@@ -1,13 +1,9 @@
 from flask import Flask, render_template, request, jsonify, Response
-import os
 import io
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-from matplotlib.figure import Figure
 from build import object_factory, config as cfg
 import visualization as vz
-from build.config import get_default_config
-
-from model.simulation import progress, get_updated_progress
+from model.simulation import get_updated_progress
 from flask_cors import CORS
 
 app = Flask(__name__)

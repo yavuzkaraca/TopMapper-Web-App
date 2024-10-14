@@ -1,0 +1,142 @@
+<div class="wrapper">
+  <div class="basic-settings">
+    <h2>Configuration Settings</h2>
+    <div class="simulation-type">
+      <label for="configType">Select Config Type:</label>
+      <select class="form-control" id="configType" [(ngModel)]="selectedConfigType" name="configType" (ngModelChange)="onConfigTypeChange()">
+        <option *ngFor="let type of configTypes" [value]="type.id">{{ type.name }}</option>
+      </select>
+    </div>
+    <form [formGroup]="basicSettingsForm">
+        <!-- Input for Growth Cone Count -->
+        <div class="form-group mb-3">
+            <label for="gc_count">Growth Cone Count:</label>
+            <input type="number" class="form-control" id="gc_count" formControlName="gc_count" placeholder="Enter growth cone count">
+        </div>
+
+        <!-- Input for Growth Cone Size -->
+        <div class="form-group mb-3">
+            <label for="gc_size">Growth Cone Size:</label>
+            <input type="number" class="form-control" id="gc_size" formControlName="gc_size" placeholder="Enter growth cone size">
+        </div>
+
+        <!-- Input for Step Size -->
+        <div class="form-group mb-3">
+            <label for="step_size">Step Size:</label>
+            <input type="number" class="form-control" id="step_size" formControlName="step_size" placeholder="Enter step size">
+        </div>
+
+        <!-- Input for Step Number -->
+        <div class="form-group mb-3">
+            <label for="step_num">Step Number:</label>
+            <input type="number" class="form-control" id="step_num" formControlName="step_num" placeholder="Enter step number">
+        </div>
+    </form>
+    <button (click)="onAdvancedClick()">Advanced</button>
+  </div>
+
+  <div class="advanced-setting" *ngIf="isAdvancedSettings">
+    <form [formGroup]="advancedSettingsForm">
+      <!-- X Step Possibility Input -->
+      <div class="form-group">
+        <label for="x_step_possibility">X Step Possibility:</label>
+        <input type="number" id="x_step_possibility" class="form-control" formControlName="x_step_possibility" placeholder="Enter X Step Possibility">
+      </div>
+
+      <!-- Y Step Possibility Input -->
+      <div class="form-group">
+        <label for="y_step_possibility">Y Step Possibility:</label>
+        <input type="number" id="y_step_possibility" class="form-control" formControlName="y_step_possibility" placeholder="Enter Y Step Possibility">
+      </div>
+
+      <!-- Sigmoid Steepness Input -->
+      <div class="form-group">
+        <label for="sigmoid_steepness">Sigmoid Steepness:</label>
+        <input type="number" id="sigmoid_steepness" class="form-control" formControlName="sigmoid_steepness" placeholder="Enter Sigmoid Steepness">
+      </div>
+
+      <!-- Sigmoid Shift Input -->
+      <div class="form-group">
+        <label for="sigmoid_shift">Sigmoid Shift:</label>
+        <input type="number" id="sigmoid_shift" class="form-control" formControlName="sigmoid_shift" placeholder="Enter Sigmoid Shift">
+      </div>
+
+      <!-- Sigmoid Height Input -->
+      <div class="form-group">
+        <label for="sigmoid_height">Sigmoid Height:</label>
+        <input type="number" id="sigmoid_height" class="form-control" formControlName="sigmoid_height" placeholder="Enter Sigmoid Height">
+      </div>
+
+      <!-- Sigma Input -->
+      <div class="form-group">
+        <label for="sigma">Sigma:</label>
+        <input type="number" id="sigma" class="form-control" formControlName="sigma" placeholder="Enter Sigma">
+      </div>
+
+      <!-- Force Checkbox -->
+      <div class="form-group form-check">
+        <input type="checkbox" id="force" class="form-check-input" formControlName="force">
+        <label class="form-check-label" for="force">Force</label>
+      </div>
+    </form>
+
+    <form [formGroup]="switchesForm" >
+      <!-- Forward Signal Checkbox -->
+      <div class="form-group form-check">
+        <input type="checkbox" id="forward_sig" class="form-check-input" formControlName="forward_sig">
+        <label class="form-check-label" for="forward_sig">Forward Signal</label>
+      </div>
+
+      <!-- Reverse Signal Checkbox -->
+      <div class="form-group form-check">
+        <input type="checkbox" id="reverse_sig" class="form-check-input" formControlName="reverse_sig">
+        <label class="form-check-label" for="reverse_sig">Reverse Signal</label>
+      </div>
+
+      <!-- FF Interaction Checkbox -->
+      <div class="form-group form-check">
+        <input type="checkbox" id="ff_inter" class="form-check-input" formControlName="ff_inter">
+        <label class="form-check-label" for="ff_inter">FF Interaction</label>
+      </div>
+
+      <!-- FT Interaction Checkbox -->
+      <div class="form-group form-check">
+        <input type="checkbox" id="ft_inter" class="form-check-input" formControlName="ft_inter">
+        <label class="form-check-label" for="ft_inter">FT Interaction</label>
+      </div>
+    </form>
+
+    <form [formGroup]="adaptationForm">
+      <!-- Adaptation Enabled Checkbox -->
+      <div class="form-group form-check">
+        <input type="checkbox" id="adaptation_enabled" class="form-check-input" formControlName="adaptation_enabled">
+        <label class="form-check-label" for="adaptation_enabled">Adaptation Enabled</label>
+      </div>
+
+      <div *ngIf="adaptationForm.get('adaptation_enabled')?.value">
+        <!-- Adaptation Mu Input -->
+        <div class="form-group">
+          <label for="adaptation_mu">Adaptation Mu:</label>
+          <input type="number" id="adaptation_mu" class="form-control" formControlName="adaptation_mu" placeholder="Enter Adaptation Mu">
+        </div>
+
+        <!-- Adaptation Lambda Input -->
+        <div class="form-group">
+          <label for="adaptation_lambda">Adaptation Lambda:</label>
+          <input type="number" id="adaptation_lambda" class="form-control" formControlName="adaptation_lambda" placeholder="Enter Adaptation Lambda">
+        </div>
+
+        <!-- Adaptation History Input -->
+        <div class="form-group">
+          <label for="adaptation_history">Adaptation History:</label>
+          <input type="number" id="adaptation_history" class="form-control" formControlName="adaptation_history" placeholder="Enter Adaptation History">
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="buttons">
+    <button (click)="startSimulation()">Start</button>
+    <button>Stop</button>
+  </div>
+</div>
