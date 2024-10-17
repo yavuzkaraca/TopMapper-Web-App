@@ -22,7 +22,7 @@ label {
   font-weight: bold;
   margin-bottom: 5px;
   display: block; /* Ensure labels are above the input fields */
-  color: #ffedbc; /* Label color to match the theme */
+  color: #dcd7d1; /* Label color to match the theme */
 }
 
 input, select {
@@ -74,6 +74,20 @@ button:hover {
   margin-left: 10px;
   font-weight: normal;
   color: #fff;
+}
+
+/* Grid layout for the form sections */
+.basic-settings form,
+.advanced-setting form,
+.switches form,
+.adaptation-settings form {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Four equal columns */
+  gap: 20px;
+}
+
+.advanced-setting form {
+  grid-template-columns: repeat(3, 1fr); /* Three columns for advanced settings */
 }
 
 /* Responsive adjustments */
