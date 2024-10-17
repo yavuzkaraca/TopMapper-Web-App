@@ -4,25 +4,43 @@
   justify-content: space-between;
   align-items: center;
   height: 60px;
-  border-bottom: 1px solid white;
   padding-left: 20px;
   padding-right: 20px;
+  background: linear-gradient(90deg, #1f1c2c, #6a9693); /* Gradient background */
+  border-bottom: 2px solid #444; /* Thicker border for a modern feel */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
 
   .logo {
     cursor: pointer;
+    transition: transform 0.3s; /* Adds a smooth scaling effect */
+
+    img {
+        max-height: 50px; // Adjust based on your navbar height
+        width: auto; // Keeps the aspect ratio of the image
+        height: auto; // Ensure proportional scaling
+        display: block;
+    }
+  }
+
+
+
+  .logo:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
   }
 
   .login-btn {
     padding: 10px 20px;
     border: 1px solid white;
-    border-radius: 5px;
+    border-radius: 25px; /* Rounded corners for a modern button look */
     transition: 0.3s;
+    font-weight: bold; /* Makes the text stand out */
   }
 
   .login-btn:hover {
     cursor: pointer;
     background: white;
     color: black;
+    box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.2); /* Glow effect on hover */
   }
 
   .navbar {
@@ -34,21 +52,36 @@
 
       .list-item {
         list-style: none;
-        margin-right: 15px;
-
-        .link {
-          color: white;
-          text-decoration: none;
-          transition: 0.3s;
-        }
+        margin-right: 25px; /* Adds more spacing between items */
+        position: relative;
       }
 
-      .list-item:hover {
-        cursor: pointer;
+      .link {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 16px; /* Slightly bigger font */
+        transition: 0.3s;
+        position: relative;
+      }
 
-        .link {
-          color: #888888;
-        }
+      .link::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: #888888; /* Color for the hover underline */
+        transition: width 0.3s ease; /* Smooth transition for underline */
+      }
+
+      .list-item:hover .link::after {
+        width: 100%; /* Underline grows on hover */
+      }
+
+      .list-item:hover .link {
+        color: #ffedbc; /* New hover color */
       }
     }
   }

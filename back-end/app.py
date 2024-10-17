@@ -10,35 +10,14 @@ app = Flask(__name__)
 CORS(app)
 
 
-
-@app.route('/')
-def home():
-    return render_template('home.html')
-
-
-@app.route('/papers')
-def papers():
-    return "<h1>Papers Page</h1>"
-
-
 @app.route('/default_configs')
 def get_default_configs():
     return jsonify(cfg.default_configs)
 
 
-@app.route('/simulation')
-def simulation():
-    return render_template('index.html')
-
-
-@app.route('/test')
-def test():
-    print('test')
-
 @app.route('/start_simulation', methods=['POST'])
 def start_simulation():
     print("POST request received")
-
 
     config = request.json
     print(config)
@@ -53,6 +32,27 @@ def start_simulation():
 @app.route('/progress', methods=['GET'])
 def get_progress():
     return jsonify({"progress": get_updated_progress()})
+
+
+
+
+
+
+"""
+
+@app.route('/')
+def home():
+    return render_template('home.html')
+
+
+@app.route('/papers')
+def papers():
+    return "<h1>Papers Page</h1>"
+
+
+@app.route('/simulation')
+def simulation():
+    return render_template('index.html')
 
 
 @app.route('/plot')
@@ -82,6 +82,8 @@ def plot_growth_cones():
     FigureCanvas(fig).print_png(output)
     return Response(output.getvalue(), mimetype='image/png')
 
+
+"""
 
 if __name__ == '__main__':
     app.run(debug=True)

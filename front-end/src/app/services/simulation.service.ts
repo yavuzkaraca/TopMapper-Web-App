@@ -15,7 +15,6 @@ export class SimulationService {
   }
 
   public startSimulation(config: any) {
-    console.log("started")
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/json'})
     }
