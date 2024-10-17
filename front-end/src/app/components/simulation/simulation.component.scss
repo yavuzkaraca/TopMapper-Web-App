@@ -1,0 +1,93 @@
+.wrapper {
+  background-color: rgba(0, 0, 0, 0.75); /* Semi-transparent black background */
+  padding: 30px;
+  border-radius: 10px; /* Soft rounded corners for modern look */
+  max-width: 900px; /* Limiting the max width of the content */
+  margin: 20px auto; /* Center the form horizontally */
+  color: #fff; /* White text for readability */
+}
+
+h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #ffedbc; /* Accent color */
+  text-align: center; /* Center the heading */
+}
+
+.form-group {
+  margin-bottom: 20px; /* Add spacing between form elements */
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block; /* Ensure labels are above the input fields */
+  color: #ffedbc; /* Label color to match the theme */
+}
+
+input, select {
+  width: 100%; /* Full width for all inputs */
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc; /* Light border for inputs */
+  background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white background */
+  color: #000; /* Black text inside inputs */
+  box-sizing: border-box;
+}
+
+input::placeholder {
+  color: #666; /* Placeholder color */
+}
+
+button {
+  background-color: #ffedbc;
+  color: #000;
+  font-weight: bold;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 20px 10px 0 0; /* Space between buttons */
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #6a9693; /* Change button color on hover */
+  color: #fff; /* Invert text color on hover */
+}
+
+.advanced-setting, .basic-settings {
+  margin-bottom: 30px; /* Adds space between sections */
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.form-check {
+  margin-top: 10px;
+}
+
+.form-check-label {
+  margin-left: 10px;
+  font-weight: normal;
+  color: #fff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .wrapper {
+    padding: 20px;
+  }
+
+  button {
+    width: 100%; /* Full-width buttons on smaller screens */
+  }
+
+  .buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+}
