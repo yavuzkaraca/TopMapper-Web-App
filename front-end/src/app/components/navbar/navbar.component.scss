@@ -6,9 +6,9 @@
   height: 60px;
   padding-left: 60px;
   padding-right: 60px;
-  background: linear-gradient(90deg, #1f1c2c, #6a9693); /* Gradient background */
-  border-bottom: 2px solid #444;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(90deg, var(--primary-gradient-start), var(--primary-gradient-end)); /* Gradient background */
+  border-bottom: 2px solid var(--border-color);
+  box-shadow: 0 4px 6px var(--shadow-color); /* Updated shadow */
 
   .logo {
     cursor: pointer;
@@ -28,7 +28,7 @@
 
   .login-btn {
     padding: 10px 20px;
-    border: 1px solid white;
+    border: 1.5px solid white; /* Updated border color */
     border-radius: 25px;
     transition: 0.3s;
     font-weight: bold;
@@ -36,9 +36,9 @@
 
   .login-btn:hover {
     cursor: pointer;
-    background: white;
-    color: black;
-    box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.2);
+    background: var(--accent-color); /* Use accent color */
+    color: var(--primary-gradient-start); /* Match with the darker primary color */
+    box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.2); /* Keep hover shadow effect */
   }
 
   .navbar {
@@ -54,7 +54,7 @@
         position: relative;
 
         .link {
-          color: white;
+          color: white; /* Use accent color */
           text-decoration: none;
           font-weight: bold;
           font-size: 16px;
@@ -70,7 +70,7 @@
           left: 0;
           width: 0;
           height: 2px;
-          background-color: #888888;
+          background-color: var(--border-color); /* Use border color */
           transition: width 0.3s ease;
         }
 
@@ -79,12 +79,11 @@
         }
 
         &:hover .link {
-          color: #ffedbc;
+          color: var(--accent-color); /* Hover color */
         }
 
         /* Dropdown for "Papers" */
         &.dropdown {
-
             /* Create an invisible buffer area between the tab and the dropdown */
             &:before {
               content: '';
@@ -101,10 +100,10 @@
             position: absolute;
             top: 150%;
             left: 0;
-            background: rgba(31, 28, 44, 0.95); /* Darker transparent background to match navbar */
+            background: rgba(31, 28, 44, 0.95); /* Darker background based on primary gradient */
             padding: 10px 0;
             list-style: none;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Adds subtle depth */
+            box-shadow: 0 4px 6px var(--shadow-color); /* Updated shadow color */
             z-index: 10;
             width: 280px; /* Adjust width for better padding/space */
             border-radius: 8px; /* Rounded corners for modern look */
@@ -115,7 +114,7 @@
           }
 
           .dropdown-link {
-            color: #ffedbc; /* Match hover color */
+            color: var(--accent-color); /* Match hover color */
             text-decoration: none;
             display: block;
             padding: 10px 15px;
@@ -124,8 +123,8 @@
           }
 
           .dropdown-link:hover {
-            background-color: #6a9693; /* Match navbar color */
-            color: white; /* Invert text color on hover */
+            background-color: var(--primary-gradient-end); /* Match navbar color */
+            color: var(--text-primary); /* Invert text color on hover */
           }
         }
       }

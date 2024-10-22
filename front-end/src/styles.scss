@@ -7,9 +7,25 @@ html, body {
   font-family: sans-serif;
   height: 100%; // Ensure both html and body fill the full height of the viewport
   background-size: cover;
-  background: black url('assets/background.jpg') no-repeat fixed center;
-}
+  background:
+      /* top, transparent black, faked with gradient */
+      linear-gradient(
+        rgba(0, 0, 0, 0.6),
+        rgba(0, 0, 0, 0.6)
+      ),
+      /* bottom, image */
+      black url('assets/background.jpg') no-repeat fixed center;
+  }
 
+
+:root {
+  --primary-gradient-start: rgba(31,28,44,0.8);
+  --primary-gradient-end: rgba(106,150,147,0.8);
+  --background-color: rgba(0,0,0,0.7);
+  --border-color: rgba(72,65,59,1);
+  --accent-color: rgba(255,237,188,1);
+  --shadow-color: rgba(0, 0, 0, 0.3);
+}
 
 .container {
   width: 1200px;

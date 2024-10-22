@@ -31,7 +31,7 @@ export class SimulationComponent implements OnInit{
   selectedConfigType: string = 'CONTINUOUS_GRADIENTS';
 
   basicSettingsForm: FormGroup = new FormGroup({});
-  advancedSettingsForm: FormGroup = new FormGroup<any>({});
+  possibilitySettingsForm: FormGroup = new FormGroup<any>({});
   switchesForm: FormGroup = new FormGroup<any>({});
   adaptationForm: FormGroup = new FormGroup<any>({});
 
@@ -47,7 +47,7 @@ export class SimulationComponent implements OnInit{
   startSimulation() {
     const mergedValues = {
       ...this.basicSettingsForm.value,
-      ...this.advancedSettingsForm.value,
+      ...this.possibilitySettingsForm.value,
       ...this.switchesForm.value,
       ...this.adaptationForm.value
     };
@@ -96,7 +96,7 @@ export class SimulationComponent implements OnInit{
       step_num: [this.currentConfig?.step_num]
     });
 
-    this.advancedSettingsForm = this.fb.group({
+    this.possibilitySettingsForm = this.fb.group({
       x_step_possibility: [this.currentConfig?.x_step_possibility],
       y_step_possibility: [this.currentConfig?.y_step_possibility],
       sigmoid_steepness: [this.currentConfig?.sigmoid_steepness],
