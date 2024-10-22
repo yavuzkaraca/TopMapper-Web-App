@@ -24,7 +24,11 @@ label {
 
 /* Form element styles */
 .form-group {
-  margin-bottom: 20px; /* Add spacing between form elements */
+  margin-bottom: 10px; /* Add spacing between form elements */
+}
+
+.form-group-basic {
+  margin-bottom: 0 !important;
 }
 
 .form-check {
@@ -67,7 +71,7 @@ button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin: 20px 10px 0 0; /* Space between buttons */
+  margin: 0 20px 0 0; /* Space between buttons */
   transition: background-color 0.3s ease;
 }
 
@@ -95,6 +99,7 @@ button:hover {
 }
 
 .settings{
+  margin-bottom: 30px;
   background-color: rgba(20, 28, 30, 0.8); /* Light background with some transparency */
   border-radius: 16px;
 }
@@ -106,9 +111,12 @@ button:hover {
   border-radius: 8px;
 }
 
-.basic-settings {
-  margin-bottom: 30px; /* Adds space between sections */
+.interaction-settings, .adaptation-settings {
+  margin-bottom: 0;
+}
 
+.basic-settings {
+  padding: 20px 20px 0;
 }
 
 .basic-settings form {
@@ -117,6 +125,9 @@ button:hover {
   gap: 20px;
 }
 
+.advanced-btn {
+  padding: 20px;
+}
 
 .possibility-settings form{
   display: grid;
@@ -133,6 +144,10 @@ button:hover {
 .adaptation-settings, .interaction-settings {
   flex: 1; /* Make sure both forms take up equal space */
   min-width: 35%; /* Prevent shrinking too much on smaller screens */
+}
+
+.advanced-settings {
+  padding: 0 20px 20px;
 }
 
 

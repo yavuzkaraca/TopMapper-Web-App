@@ -10,55 +10,57 @@
     </div>
     <form [formGroup]="basicSettingsForm">
         <!-- Input for Growth Cone Count -->
-        <div class="form-group">
+        <div class="form-group form-group-basic">
             <label for="gc_count">Growth Cone Count:</label>
-            <input type="number" class="form-control" id="gc_count" formControlName="gc_count" placeholder="Enter growth cone count">
+            <input type="number" class="form-control" id="gc_count" formControlName="gc_count" placeholder="Enter Growth Cone Count">
         </div>
 
         <!-- Input for Growth Cone Size -->
-        <div class="form-group">
+        <div class="form-group form-group-basic">
             <label for="gc_size">Growth Cone Radius:</label>
-            <input type="number" class="form-control" id="gc_size" formControlName="gc_size" placeholder="Enter growth cone size">
+            <input type="number" class="form-control" id="gc_size" formControlName="gc_size" placeholder="Enter Growth Cone Radius">
         </div>
 
         <!-- Input for Step Size -->
-        <div class="form-group">
+        <div class="form-group form-group-basic">
             <label for="step_size">Step Size:</label>
-            <input type="number" class="form-control" id="step_size" formControlName="step_size" placeholder="Enter step size">
+            <input type="number" class="form-control" id="step_size" formControlName="step_size" placeholder="Enter Step Size">
         </div>
 
         <!-- Input for Step Number -->
-        <div class="form-group">
+        <div class="form-group form-group-basic">
             <label for="step_num">Step Number:</label>
-            <input type="number" class="form-control" id="step_num" formControlName="step_num" placeholder="Enter step number">
+            <input type="number" class="form-control" id="step_num" formControlName="step_num" placeholder="Enter Step Number">
         </div>
     </form>
   </div>
 
-  <button (click)="onAdvancedClick()">Advanced</button>
+  <div class="advanced-btn">
+      <button (click)="onAdvancedClick()">Advanced</button>
+  </div>
 
   <div class="advanced-settings" *ngIf="isAdvancedSettings">
 
     <div class="possibility-settings">
-      <label class="settings-header">Step Possibility Settings</label>
+      <label class="settings-header">Step Decision Settings</label>
 
       <form  [formGroup]="possibilitySettingsForm">
         <!-- X Step Possibility Input -->
         <div class="form-group">
           <label for="x_step_possibility">X Step Bias:</label>
-          <input type="number" id="x_step_possibility" class="form-control" formControlName="x_step_possibility" placeholder="Enter X Step Possibility">
+          <input type="number" id="x_step_possibility" class="form-control" formControlName="x_step_possibility" placeholder="Enter X Step Bias">
         </div>
 
         <!-- Y Step Possibility Input -->
         <div class="form-group">
           <label for="y_step_possibility">Y Step Bias:</label>
-          <input type="number" id="y_step_possibility" class="form-control" formControlName="y_step_possibility" placeholder="Enter Y Step Possibility">
+          <input type="number" id="y_step_possibility" class="form-control" formControlName="y_step_possibility" placeholder="Enter Y Step Bias">
         </div>
 
         <!-- Sigma Input -->
         <div class="form-group">
           <label for="sigma">Step Decision SD:</label>
-          <input type="number" id="sigma" class="form-control" formControlName="sigma" placeholder="Enter Sigma">
+          <input type="number" id="sigma" class="form-control" formControlName="sigma" placeholder="Enter Step Decision SD">
         </div>
 
         <!-- Force Checkbox -->
@@ -74,7 +76,7 @@
     <div class="adaptation-interaction-container">
 
       <div class="interaction-settings">
-        <label class="settings-header">Interaction Switches</label>
+        <label class="settings-header">Interaction Settings</label>
         <form [formGroup]="switchesForm">
           <!-- Forward Signal Checkbox -->
           <div class="form-group form-check">
@@ -106,19 +108,19 @@
             <!-- Sigmoid Steepness Input -->
             <div class="form-group">
               <label for="sigmoid_steepness">FF-Interaction Ramp-Up:</label>
-              <input type="number" id="sigmoid_steepness" class="form-control" formControlName="sigmoid_steepness" placeholder="Enter Sigmoid Steepness">
+              <input type="number" id="sigmoid_steepness" class="form-control" formControlName="sigmoid_steepness" placeholder="Enter FF-Interaction Ramp-Up">
             </div>
 
             <!-- Sigmoid Shift Input -->
             <div class="form-group">
               <label for="sigmoid_shift">FF-Interaction Delay:</label>
-              <input type="number" id="sigmoid_shift" class="form-control" formControlName="sigmoid_shift" placeholder="Enter Sigmoid Shift">
+              <input type="number" id="sigmoid_shift" class="form-control" formControlName="sigmoid_shift" placeholder="Enter FF-Interaction Delay">
             </div>
 
             <!-- Sigmoid Height Input -->
             <div class="form-group">
               <label for="sigmoid_height">FF-Interaction Maximum:</label>
-              <input type="number" id="sigmoid_height" class="form-control" formControlName="sigmoid_height" placeholder="Enter Sigmoid Height">
+              <input type="number" id="sigmoid_height" class="form-control" formControlName="sigmoid_height" placeholder="Enter FF-Interaction Maximum">
             </div>
           </div>
         </form>
@@ -137,13 +139,13 @@
             <!-- Adaptation Mu Input -->
             <div class="form-group">
               <label for="adaptation_mu">Adaptation Coefficient:</label>
-              <input type="number" id="adaptation_mu" class="form-control" formControlName="adaptation_mu" placeholder="Enter Adaptation Mu">
+              <input type="number" id="adaptation_mu" class="form-control" formControlName="adaptation_mu" placeholder="Enter Adaptation Coefficient">
             </div>
 
             <!-- Adaptation Lambda Input -->
             <div class="form-group">
               <label for="adaptation_lambda">Resetting Force:</label>
-              <input type="number" id="adaptation_lambda" class="form-control" formControlName="adaptation_lambda" placeholder="Enter Adaptation Lambda">
+              <input type="number" id="adaptation_lambda" class="form-control" formControlName="adaptation_lambda" placeholder="Enter Resetting Force">
             </div>
 
             <!-- Adaptation History Input -->
