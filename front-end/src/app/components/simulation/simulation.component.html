@@ -58,16 +58,21 @@
         </div>
 
         <!-- Sigma Input -->
-        <div class="form-group">
+        <div *ngIf="!possibilitySettingsForm.get('force')?.value" class="form-group">
           <label for="sigma">Step Decision SD:</label>
           <input type="number" id="sigma" class="form-control" formControlName="sigma" placeholder="Enter Step Decision SD">
         </div>
 
         <!-- Force Checkbox -->
-        <div class="form-group form-check">
+        <div class="form-group form-check force-checkbox">
           <input type="checkbox" id="force" class="form-check-input" formControlName="force">
-          <label class="form-check-label" for="force">Force</label>
+          <label class="form-check-label" for="force">Accept Every Step</label>
         </div>
+
+
+
+
+
       </form>
 
     </div>
@@ -77,62 +82,74 @@
 
       <div class="interaction-settings">
         <label class="settings-header">Interaction Settings</label>
+
+
         <form [formGroup]="switchesForm">
-          <!-- Forward Signal Checkbox -->
-          <div class="form-group form-check">
-            <input type="checkbox" id="forward_sig" class="form-check-input" formControlName="forward_sig">
-            <label class="form-check-label" for="forward_sig">Forward Signal</label>
-          </div>
 
-          <!-- Reverse Signal Checkbox -->
-          <div class="form-group form-check">
-            <input type="checkbox" id="reverse_sig" class="form-check-input" formControlName="reverse_sig">
-            <label class="form-check-label" for="reverse_sig">Reverse Signal</label>
-          </div>
+          <div class="interaction-switches">
+
+            <!-- Forward Signal Checkbox -->
+            <div class="form-group form-check">
+              <input type="checkbox" id="forward_sig" class="form-check-input" formControlName="forward_sig">
+              <label class="form-check-label" for="forward_sig">Forward Signal</label>
+            </div>
+
+            <!-- Reverse Signal Checkbox -->
+            <div class="form-group form-check">
+              <input type="checkbox" id="reverse_sig" class="form-check-input" formControlName="reverse_sig">
+              <label class="form-check-label" for="reverse_sig">Reverse Signal</label>
+            </div>
 
 
-          <!-- FT Interaction Checkbox -->
-          <div class="form-group form-check">
-            <input type="checkbox" id="ft_inter" class="form-check-input" formControlName="ft_inter">
-            <label class="form-check-label" for="ft_inter">FT Interaction</label>
-          </div>
+            <!-- FT Interaction Checkbox -->
+            <div class="form-group form-check">
+              <input type="checkbox" id="ft_inter" class="form-check-input" formControlName="ft_inter">
+              <label class="form-check-label" for="ft_inter">FT Interaction</label>
+            </div>
 
-          <!-- FF Interaction Checkbox -->
-          <div class="form-group form-check">
-            <input type="checkbox" id="ff_inter" class="form-check-input" formControlName="ff_inter">
-            <label class="form-check-label" for="ff_inter">FF Interaction</label>
+            <!-- FF Interaction Checkbox -->
+            <div class="form-group form-check">
+              <input type="checkbox" id="ff_inter" class="form-check-input" formControlName="ff_inter">
+              <label class="form-check-label" for="ff_inter">FF Interaction</label>
+            </div>
+
           </div>
 
           <!-- Show Sigmoid inputs only if FF Interaction is checked -->
-          <div *ngIf="switchesForm.get('ff_inter')?.value">
-            <!-- Sigmoid Steepness Input -->
-            <div class="form-group">
-              <label for="sigmoid_steepness">FF-Interaction Ramp-Up:</label>
-              <input type="number" id="sigmoid_steepness" class="form-control" formControlName="sigmoid_steepness" placeholder="Enter FF-Interaction Ramp-Up">
-            </div>
+          <div *ngIf="switchesForm.get('ff_inter')?.value" >
 
-            <!-- Sigmoid Shift Input -->
-            <div class="form-group">
-              <label for="sigmoid_shift">FF-Interaction Delay:</label>
-              <input type="number" id="sigmoid_shift" class="form-control" formControlName="sigmoid_shift" placeholder="Enter FF-Interaction Delay">
-            </div>
+            <div class="ff-settings">
+              <!-- Sigmoid Steepness Input -->
+              <div class="form-group">
+                <label for="sigmoid_steepness">FF-Interaction Ramp-Up:</label>
+                <input type="number" id="sigmoid_steepness" class="form-control" formControlName="sigmoid_steepness" placeholder="Enter FF-Interaction Ramp-Up">
+              </div>
 
-            <!-- Sigmoid Height Input -->
-            <div class="form-group">
-              <label for="sigmoid_height">FF-Interaction Maximum:</label>
-              <input type="number" id="sigmoid_height" class="form-control" formControlName="sigmoid_height" placeholder="Enter FF-Interaction Maximum">
+              <!-- Sigmoid Shift Input -->
+              <div class="form-group">
+                <label for="sigmoid_shift">FF-Interaction Delay:</label>
+                <input type="number" id="sigmoid_shift" class="form-control" formControlName="sigmoid_shift" placeholder="Enter FF-Interaction Delay">
+              </div>
+
+              <!-- Sigmoid Height Input -->
+              <div class="form-group">
+                <label for="sigmoid_height">FF-Interaction Maximum:</label>
+                <input type="number" id="sigmoid_height" class="form-control" formControlName="sigmoid_height" placeholder="Enter FF-Interaction Maximum">
+              </div>
             </div>
           </div>
         </form>
       </div>
 
       <div class="adaptation-settings">
-        <label class="settings-header">Adaptation</label>
+
         <form [formGroup]="adaptationForm">
           <!-- Adaptation Enabled Checkbox -->
-          <div class="form-group form-check">
-            <input type="checkbox" id="adaptation_enabled" class="form-check-input" formControlName="adaptation_enabled">
-            <label class="form-check-label" for="adaptation_enabled">Adaptation</label>
+          <div class="settings-header">
+            <div class="form-group form-check adaptation-checkbox">
+              <input type="checkbox" id="adaptation_enabled" class="form-check-input" formControlName="adaptation_enabled">
+              <label class="form-check-label" for="adaptation_enabled">Adaptation</label>
+            </div>
           </div>
 
           <div *ngIf="adaptationForm.get('adaptation_enabled')?.value">
@@ -162,9 +179,8 @@
   </div>
 
 
-  <div class="buttons">
+  <div class="start-stop-btn">
     <button (click)="startSimulation()">Start</button>
-    <button>Stop</button>
   </div>
 
 </div>
