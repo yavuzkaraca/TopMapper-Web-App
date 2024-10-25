@@ -36,13 +36,13 @@
   </div>
 
   <div class="advanced-btn">
-      <button (click)="onAdvancedClick()">Advanced</button>
+      <button id="advanced-btn" (click)="onAdvancedClick()">Advanced</button>
   </div>
 
   <div class="advanced-settings" *ngIf="isAdvancedSettings">
 
     <div class="possibility-settings">
-      <label class="settings-header">Step Decision Settings</label>
+      <label class="settings-header">Step Decision</label>
 
       <form  [formGroup]="possibilitySettingsForm">
         <!-- X Step Possibility Input -->
@@ -59,8 +59,8 @@
 
         <!-- Sigma Input -->
         <div *ngIf="!possibilitySettingsForm.get('force')?.value" class="form-group">
-          <label for="sigma">Step Decision SD:</label>
-          <input type="number" id="sigma" class="form-control" formControlName="sigma" placeholder="Enter Step Decision SD">
+          <label for="sigma">Standard Deviation:</label>
+          <input type="number" id="sigma" class="form-control" formControlName="sigma" placeholder="Enter Standard Deviation">
         </div>
 
         <!-- Force Checkbox -->
@@ -81,7 +81,7 @@
     <div class="adaptation-interaction-container">
 
       <div class="interaction-settings">
-        <label class="settings-header">Interaction Settings</label>
+        <label class="settings-header">Potential Calculation</label>
 
 
         <form [formGroup]="switchesForm">
@@ -179,8 +179,8 @@
   </div>
 
 
-  <div class="start-stop-btn">
-    <button (click)="startSimulation()">Start</button>
+  <div class="start-btn">
+    <button id="start-btn" (click)="startSimulation()">Start</button>
   </div>
 
 </div>

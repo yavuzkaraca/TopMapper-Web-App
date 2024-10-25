@@ -10,8 +10,8 @@ html, body {
   background:
       /* top, transparent black, faked with gradient */
       linear-gradient(
-        rgba(0, 0, 0, 0.6),
-        rgba(0, 0, 0, 0.6)
+        rgba(0, 0, 0, 0.7),
+        rgba(0, 0, 0, 0.7)
       ),
       /* bottom, image */
       black url('assets/background.jpg') no-repeat fixed center;
@@ -27,6 +27,7 @@ html, body {
   --accent-color: rgba(255,237,188,1);
   --shadow-color: rgba(0, 0, 0, 0.3);
   --checkbox-color: rgba(52, 73, 94, 1);
+  --start-btn-color: rgba(255, 196, 103, 0.9);
 }
 
 .container {
