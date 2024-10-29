@@ -1,0 +1,223 @@
+/* Wrapper and layout */
+.wrapper {
+  padding: 30px;
+  border-radius: 10px; /* Soft rounded corners for modern look */
+  max-width: 900px; /* Limiting the max width of the content */
+  margin: 20px auto; /* Center the form horizontally */
+  color: var(--text-primary); /* Use primary text color */
+}
+
+/* Typography */
+h2 {
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+  color: var(--accent-color); /* Use accent color */
+  text-align: center; /* Center the heading */
+}
+
+label {
+  font-weight: normal;
+  margin-bottom: 5px;
+  display: block; /* Ensure labels are above the input fields */
+  color: white; /* Label color updated */
+}
+
+/* Form element styles */
+.form-group {
+  margin-bottom: 10px; /* Add spacing between form elements */
+}
+
+.adaptation-checkbox{
+  margin-bottom: 0 !important;
+  margin-left: 3px;
+}
+
+.force-checkbox{
+  margin-left: 15px;
+  margin-right: 10px;
+  margin-top: 20px;
+
+}
+
+.form-group-basic {
+  margin-bottom: 0 !important;
+}
+
+.form-check {
+  display: flex;
+  align-items: center; /* Vertically center the checkbox and label */
+  gap: 10px; /* Small gap between checkbox and label */
+  margin-bottom: 10px; /* Add space between each checkbox-label pair */
+}
+
+input[type=checkbox] {
+  transform: scale(1.3);
+  accent-color: var(--accent-color);
+}
+
+.interaction-switches{
+  margin-left: 3px;
+}
+
+.form-check-input {
+  margin: 0; /* Remove any default margin on the checkbox */
+  width: auto; /* Ensure checkbox size is normal */
+}
+
+.form-check-label {
+  margin: 0; /* Remove unnecessary margin */
+  font-weight: normal; /* Normal weight for label */
+}
+
+input, select {
+  width: 100%; /* Full width for all inputs */
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--border-color); /* Updated input border color */
+  background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white background */
+  color: black; /* Match the gradient end color */
+  box-sizing: border-box;
+}
+
+input::placeholder {
+  color: var(--border-color); /* Placeholder matches border color */
+}
+
+/* Buttons */
+button {
+  background-color: var(--accent-color); /* Updated button background */
+  color: var(--primary-gradient-start); /* Use primary color for text */
+  font-weight: bold;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--primary-gradient-end); /* Change color on hover */
+  color: var(--text-primary); /* Invert text color on hover */
+}
+
+/* Simulation type */
+.simulation-type {
+  font-weight: bold;
+  width: 30%; /* Adjust width to fit content */
+  margin-bottom: 20px;
+}
+
+/* Form layout */
+.settings-header {
+  display: block;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 10px; /* Small gap between the header and the line */
+  color: var(--text-primary); /* Adjust the text color if needed */
+  padding-bottom: 5px; /* Space between the text and the line */
+  border-bottom: 2px solid var(--border-color); /* Line below the header */
+}
+
+.settings{
+  margin-bottom: 30px;
+  background-color: rgba(20, 28, 30, 0.8); /* Light background with some transparency */
+  border-radius: 16px;
+}
+
+.ff-settings{
+  margin-top: 20px;
+}
+
+.possibility-settings, .adaptation-settings, .interaction-settings{
+  background-color: rgba(255, 255, 255, 0.1); /* Light background with some transparency */
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+
+.interaction-settings, .adaptation-settings {
+  margin-bottom: 0;
+}
+
+.basic-settings {
+  padding: 20px 20px 0;
+}
+
+.basic-settings form {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Four equal columns */
+  gap: 20px;
+}
+
+.advanced-btn {
+  padding: 20px;
+}
+
+.possibility-settings form{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Four columns for advanced settings */
+  gap: 10px;
+}
+
+.adaptation-interaction-container {
+  display: flex;
+  justify-content: space-between; /* Distribute the forms side by side */
+  gap: 20px; /* Space between the forms */
+}
+
+.adaptation-settings, .interaction-settings {
+  flex: 1; /* Make sure both forms take up equal space */
+  min-width: 35%; /* Prevent shrinking too much on smaller screens */
+}
+
+.advanced-settings {
+  padding: 0 20px 20px;
+}
+
+.start-btn {
+  display: flex;
+  justify-content: center;   /* Horizontally center the buttons */
+  align-items: center;       /* Vertically center the buttons (optional, if needed) */
+}
+
+#start-btn {
+  width: 18%; /* Adjusted for better visibility */
+  padding: 12px 24px; /* Adds padding for better button feel */
+  background-color: var(--start-btn-color);
+  box-shadow: 0 4px 8px rgba(255, 180, 60, 0.6), 0 0 5px rgba(255, 200, 90, 0.5); /* A soft glow and enhanced shadow */
+  color: #000000; /* Ensures text contrast */
+  border: none; /* Removes default border */
+  border-radius: 8px; /* Adds a smooth rounded look */
+  font-size: 1rem; /* Increases font size for readability */
+  font-weight: bold; /* Makes the text stand out */
+  cursor: pointer; /* Indicates button interaction */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions for hover effects */
+}
+
+#start-btn:hover {
+  background-color: rgba(255, 180, 60, 1);
+  color: rgb(0, 66, 66); /* Dark teal for a refreshing contrast */
+}
+
+#start-btn:active {
+  background-color: rgb(255, 176, 42); /* Slightly darker when pressed */
+  transform: scale(0.98); /* Adds a click effect */
+}
+
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .wrapper {
+    padding: 20px;
+  }
+
+  button {
+    width: 100%; /* Full-width buttons on smaller screens */
+  }
+
+  .buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+}
