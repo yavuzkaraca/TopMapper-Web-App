@@ -14,12 +14,12 @@
       </div>
 
       <div class="substrate-btn">
-        <button id="substrate-btn" (click)="showDialog = true">Configure Substrate</button>
-        <app-substrate *ngIf="showDialog" (closeDialog)="showDialog = false"></app-substrate>
+        <button id="substrate-btn" mat-button (click)="openSubstrateDialog()">Configure Substrate</button>
       </div>
 
 
     </div>
+
 
     <form [formGroup]="basicSettingsForm">
         <!-- Input for Growth Cone Count -->

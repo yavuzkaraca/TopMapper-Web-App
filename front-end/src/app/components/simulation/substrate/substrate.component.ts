@@ -1,17 +1,24 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
+import {MatDialogActions, MatDialogContent, MatDialogRef} from '@angular/material/dialog';
+import {MatButton} from '@angular/material/button';
 
 @Component({
   selector: 'app-substrate',
   standalone: true,
-  imports: [],
+  imports: [
+    MatDialogContent,
+    MatDialogActions,
+    MatButton
+  ],
   templateUrl: './substrate.component.html',
   styleUrl: './substrate.component.scss'
 })
 export class SubstrateComponent {
-  @Output() closeDialog = new EventEmitter<void>();
 
-  close() {
-    this.closeDialog.emit();
+  constructor(public dialogRef: MatDialogRef<SubstrateComponent>) {}
+
+  // Method to close the dialog
+  close(): void {
+    this.dialogRef.close();
   }
-
 }
