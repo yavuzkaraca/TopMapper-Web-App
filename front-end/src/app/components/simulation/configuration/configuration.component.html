@@ -14,8 +14,10 @@
       </div>
 
       <div class="substrate-btn">
-        <button id="substrate-btn" (click)="onSubstrateClick()">Configure Substrate</button>
+        <button id="substrate-btn" (click)="showDialog = true">Configure Substrate</button>
+        <app-substrate *ngIf="showDialog" (closeDialog)="showDialog = false"></app-substrate>
       </div>
+
 
     </div>
 
@@ -52,38 +54,6 @@
 
   <div class="advanced-settings" *ngIf="showAdvancedSettings">
 
-    <div class="step-settings">
-      <label class="settings-header">Step Decision</label>
-
-      <form  [formGroup]="stepDecisionForm">
-        <!-- X Step Possibility Input -->
-        <div class="form-group">
-          <label for="x_step_possibility">X Step Bias:</label>
-          <input type="number" id="x_step_possibility" class="form-control" formControlName="x_step_possibility" placeholder="Enter X Step Bias">
-        </div>
-
-        <!-- Y Step Possibility Input -->
-        <div class="form-group">
-          <label for="y_step_possibility">Y Step Bias:</label>
-          <input type="number" id="y_step_possibility" class="form-control" formControlName="y_step_possibility" placeholder="Enter Y Step Bias">
-        </div>
-
-        <!-- Sigma Input -->
-        <div *ngIf="!stepDecisionForm.get('force')?.value" class="form-group">
-          <label for="sigma">Standard Deviation:</label>
-          <input type="number" id="sigma" class="form-control" formControlName="sigma" placeholder="Enter Standard Deviation">
-        </div>
-
-        <!-- Force Checkbox -->
-        <div class="form-group form-check force-checkbox">
-          <input type="checkbox" id="force" class="form-check-input" formControlName="force">
-          <label class="form-check-label" for="force">Accept Every Step</label>
-        </div>
-      </form>
-
-
-    </div>
-
     <div class="gc-settings">
       <label class="settings-header">Growth Cone</label>
 
@@ -117,6 +87,37 @@
         <div class="form-group">
           <label for="x_step_possibility">Receptor Steepness:</label>
           <input type="number" id="test6" class="form-control" formControlName="x_step_possibility" placeholder="Enter X Step Bias">
+        </div>
+      </form>
+
+    </div>
+
+    <div class="step-settings">
+      <label class="settings-header">Step Decision</label>
+
+      <form  [formGroup]="stepDecisionForm">
+        <!-- X Step Possibility Input -->
+        <div class="form-group">
+          <label for="x_step_possibility">X Step Bias:</label>
+          <input type="number" id="x_step_possibility" class="form-control" formControlName="x_step_possibility" placeholder="Enter X Step Bias">
+        </div>
+
+        <!-- Y Step Possibility Input -->
+        <div class="form-group">
+          <label for="y_step_possibility">Y Step Bias:</label>
+          <input type="number" id="y_step_possibility" class="form-control" formControlName="y_step_possibility" placeholder="Enter Y Step Bias">
+        </div>
+
+        <!-- Sigma Input -->
+        <div *ngIf="!stepDecisionForm.get('force')?.value" class="form-group">
+          <label for="sigma">Standard Deviation:</label>
+          <input type="number" id="sigma" class="form-control" formControlName="sigma" placeholder="Enter Standard Deviation">
+        </div>
+
+        <!-- Force Checkbox -->
+        <div class="form-group form-check force-checkbox">
+          <input type="checkbox" id="force" class="form-check-input" formControlName="force">
+          <label class="form-check-label" for="force">Accept Every Step</label>
         </div>
       </form>
 
@@ -224,9 +225,8 @@
   </div>
   </div>
 
-
   <div class="start-btn">
-    <button id="start-btn" (click)="startSimulation()">Start</button>
+    <button id="start-btn" [routerLink]="['/results']" (click)="startSimulation()">Start</button>
   </div>
 
 </div>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-results',
@@ -8,5 +9,10 @@ import { Component } from '@angular/core';
   styleUrl: './results.component.scss'
 })
 export class ResultsComponent {
+  constructor(private router: Router) {}
 
+  goBack() {
+    this.router.navigate(['/simulation']).then(r => {}); // Adjust the route as needed
+  }
 }
+

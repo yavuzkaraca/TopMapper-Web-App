@@ -1,1 +1,69 @@
-<p>results works!</p>
+<div class="results-wrapper">
+  <h2>Simulation Results</h2>
+
+  <!-- Summary Section -->
+  <div class="summary-section">
+    <h3>Summary</h3>
+    <p>Here’s a quick overview of your simulation results.</p>
+    <div class="summary-cards">
+      <div class="summary-card">
+        <h4>Total Growth Cones</h4>
+        <p>120</p>
+      </div>
+      <div class="summary-card">
+        <h4>Simulation Steps</h4>
+        <p>200</p>
+      </div>
+      <div class="summary-card">
+        <h4>Computation Time</h4>
+        <p>15.3 seconds</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Result Images Section -->
+  <div class="images-section">
+    <h3>Result Visualizations</h3>
+    <div class="images-container">
+      <img src="path/to/image1.jpg" alt="Substrate Visualization" />
+      <img src="path/to/image2.jpg" alt="Growth Cone Path" />
+      <img src="path/to/image3.jpg" alt="Final Projection Mapping" />
+    </div>
+  </div>
+
+  <!-- Detailed Results Section -->
+  <div class="detailed-results">
+    <h3>Detailed Metrics</h3>
+    <table class="results-table">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Value</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Average Step Size</td>
+          <td>0.5</td>
+          <td>Average distance moved per step</td>
+        </tr>
+        <tr>
+          <td>Max Receptor Activation</td>
+          <td>1.2</td>
+          <td>Peak receptor response value</td>
+        </tr>
+        <tr>
+          <td>Adaptation Factor</td>
+          <td>0.7</td>
+          <td>Rate of adaptation over the simulation</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Back to Configuration Button -->
+  <div class="results-buttons">
+    <button (click)="goBack()">Back to Configuration</button>
+  </div>
+</div>

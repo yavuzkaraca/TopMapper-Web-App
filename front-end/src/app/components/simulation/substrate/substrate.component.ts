@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-substrate',
@@ -8,5 +8,10 @@ import { Component } from '@angular/core';
   styleUrl: './substrate.component.scss'
 })
 export class SubstrateComponent {
+  @Output() closeDialog = new EventEmitter<void>();
+
+  close() {
+    this.closeDialog.emit();
+  }
 
 }

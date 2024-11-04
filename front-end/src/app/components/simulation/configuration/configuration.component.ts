@@ -4,7 +4,8 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from "@angul
 import { NgForOf, NgIf } from "@angular/common";
 
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
-import { SubstrateComponent } from '../substrate/substrate.component'; // adjust path if needed
+import { SubstrateComponent } from '../substrate/substrate.component';
+import {RouterLink} from '@angular/router'; // adjust path if needed
 
 
 
@@ -20,6 +21,8 @@ import { SubstrateComponent } from '../substrate/substrate.component'; // adjust
     ReactiveFormsModule,
     NgIf,
     MatDialogModule,
+    SubstrateComponent,
+    RouterLink,
   ],
   templateUrl: './configuration.component.html',
   styleUrl: './configuration.component.scss'
@@ -28,6 +31,7 @@ export class ConfigurationComponent implements OnInit {
 
   /** Toggle for advanced settings display */
   showAdvancedSettings: boolean = false;
+  showDialog: boolean = false;
 
   /** Available simulation types */
   configTypes = [
@@ -57,6 +61,7 @@ export class ConfigurationComponent implements OnInit {
    * Constructor injects necessary services.
    * @param simulationService Service to interact with backend simulation API.
    * @param fb FormBuilder to create reactive forms.
+   * @param dialog
    */
   constructor(
     private simulationService: SimulationService,
@@ -109,12 +114,7 @@ export class ConfigurationComponent implements OnInit {
 
 
 
-  onSubstrateClick(): void {
-    this.dialog.open(SubstrateComponent, {
-      width: '400px',  // adjust size as needed
-      height: '300px', // adjust size as needed
-    });
-  }
+
 
 
 

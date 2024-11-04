@@ -1,1 +1,7 @@
-<p>substrate works!</p>
+<div class="custom-dialog-overlay" (click)="close()">
+  <div class="custom-dialog" (click)="$event.stopPropagation()">
+    <h2>Custom Dialog</h2>
+    <p>This is a custom dialog box.</p>
+    <button (click)="close()">Close</button>
+  </div>
+</div>

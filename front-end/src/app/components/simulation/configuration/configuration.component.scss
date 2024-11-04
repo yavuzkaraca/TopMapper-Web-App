@@ -86,7 +86,7 @@ input::placeholder {
 /* Buttons */
 button {
   background-color: var(--accent-color); /* Updated button background */
-  color: var(--primary-gradient-start); /* Use primary color for text */
+  color: var(--text); /* Adds a dark overlay */
   font-weight: bold;
   padding: 12px 25px;
   border: none;
@@ -172,7 +172,7 @@ button:hover {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* Four columns for advanced settings */
   column-gap: 20px;
-  row-gap: 20px;
+  row-gap: 10px;
 }
 
 .type-substrate-container{

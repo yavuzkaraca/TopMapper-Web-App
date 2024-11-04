@@ -1,0 +1,140 @@
+/* Wrapper and Layout */
+.results-wrapper {
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 900px;
+  margin: 20px auto;
+  color: var(--text-primary);
+  background-color: rgba(20, 28, 30, 0.8);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Typography */
+h2 {
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+  color: var(--accent-color);
+  text-align: center;
+}
+
+h3 {
+  font-size: 1.4rem;
+  color: var(--accent-color);
+  margin-bottom: 15px;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 5px;
+}
+
+/* Summary Cards */
+.summary-section {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.summary-cards {
+  display: flex;
+  justify-content: space-around;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.summary-card {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: black;
+  padding: 15px;
+  border-radius: 8px;
+  width: 30%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.summary-card h4 {
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+}
+
+/* Images Section */
+.images-section {
+  margin-bottom: 30px;
+}
+
+.images-container {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.images-container img {
+  max-width: 30%;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.images-container img:hover {
+  transform: scale(1.05);
+}
+
+/* Detailed Results Table */
+.detailed-results {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.results-table th, .results-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.results-table th {
+  color: var(--accent-color);
+}
+
+.results-table td {
+  color: white;
+}
+
+/* Buttons */
+.results-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+button {
+  background-color: var(--accent-color);
+  color: var(--primary-gradient-start);
+  font-weight: bold;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--primary-gradient-end);
+  color: var(--text-primary);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .summary-cards, .images-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .summary-card, .images-container img {
+    width: 80%;
+  }
+}
