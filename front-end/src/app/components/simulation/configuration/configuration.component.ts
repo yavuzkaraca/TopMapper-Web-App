@@ -3,6 +3,11 @@ import { SimulationService } from "../../../services/simulation.service";
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NgForOf, NgIf } from "@angular/common";
 
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import { SubstrateComponent } from '../substrate/substrate.component'; // adjust path if needed
+
+
+
 /**
  * Component for configuring and starting a simulation.
  */
@@ -13,7 +18,8 @@ import { NgForOf, NgIf } from "@angular/common";
     FormsModule,
     NgForOf,
     ReactiveFormsModule,
-    NgIf
+    NgIf,
+    MatDialogModule,
   ],
   templateUrl: './configuration.component.html',
   styleUrl: './configuration.component.scss'
@@ -54,7 +60,8 @@ export class ConfigurationComponent implements OnInit {
    */
   constructor(
     private simulationService: SimulationService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    public dialog: MatDialog
   ) {}
 
   /** Lifecycle hook to initialize component and fetch default configuration */
@@ -84,6 +91,7 @@ export class ConfigurationComponent implements OnInit {
       error => console.error('Error:', error)
     );
 
+
   }
 
   /** Handles configuration type changes and reinitializes the form */
@@ -98,6 +106,17 @@ export class ConfigurationComponent implements OnInit {
   onAdvancedClick() {
     this.showAdvancedSettings = !this.showAdvancedSettings;
   }
+
+
+
+  onSubstrateClick(): void {
+    this.dialog.open(SubstrateComponent, {
+      width: '400px',  // adjust size as needed
+      height: '300px', // adjust size as needed
+    });
+  }
+
+
 
   /** Combines all form values into a single configuration object */
   private getMergedFormValues() {

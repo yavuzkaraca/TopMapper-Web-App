@@ -100,6 +100,11 @@ button:hover {
   color: var(--text-primary); /* Invert text color on hover */
 }
 
+.substrate-btn{
+  padding-top: 21px;
+  padding-right: 12px;
+}
+
 /* Simulation type */
 .simulation-type {
   font-weight: bold;
@@ -156,7 +161,7 @@ button:hover {
 .step-settings form {
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* Four columns for advanced settings */
-  gap: 10px;
+  gap: 20px;
 }
 
 .gc-settings {
@@ -166,7 +171,7 @@ button:hover {
 .gc-settings form{
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* Four columns for advanced settings */
-  column-gap: 90px;
+  column-gap: 20px;
   row-gap: 20px;
 }
 
