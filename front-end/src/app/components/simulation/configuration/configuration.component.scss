@@ -128,7 +128,7 @@ button:hover {
   margin-top: 20px;
 }
 
-.possibility-settings, .adaptation-settings, .interaction-settings{
+.step-settings, .gc-settings, .adaptation-settings, .interaction-settings{
   background-color: rgba(255, 255, 255, 0.1); /* Light background with some transparency */
   padding: 20px;
   margin-bottom: 20px;
@@ -153,10 +153,27 @@ button:hover {
   padding: 20px;
 }
 
-.possibility-settings form{
+.step-settings form {
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* Four columns for advanced settings */
   gap: 10px;
+}
+
+.gc-settings {
+  padding: 20px 20px 20px;
+}
+
+.gc-settings form{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Four columns for advanced settings */
+  column-gap: 90px;
+  row-gap: 20px;
+}
+
+.type-substrate-container{
+  display: flex;
+  justify-content: space-between; /* Distribute the forms side by side */
+  gap: 20px; /* Space between the forms */
 }
 
 .adaptation-interaction-container {

@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import {HomeComponent} from "./components/home/home.component";
 import {ConfigurationComponent} from "./components/simulation/configuration/configuration.component";
-import { ResultsComponent } from './components/simulation/results/results.component';  // Import ResultsComponent
+import {ResultsComponent } from './components/simulation/results/results.component';  // Import ResultsComponent
 import {AboutComponent} from './components/about/about.component';
 
 export const routes: Routes = [
@@ -18,7 +18,7 @@ export const routes: Routes = [
     component: AboutComponent
   },
   {
-    path: 'results',  // Add a route for ResultsComponent
+    path: 'results',
     component: ResultsComponent
   }
 ];

@@ -2,12 +2,23 @@
   <h2>Configuration Settings</h2>
   <div class="settings">
   <div class="basic-settings">
-    <div class="simulation-type">
-      <label for="configType">Select Config Type:</label>
-      <select class="form-control mb-3" id="configType" [(ngModel)]="selectedConfigType" name="configType" (ngModelChange)="onConfigTypeChange()">
-        <option *ngFor="let type of configTypes" [value]="type.id">{{ type.name }}</option>
-      </select>
+
+    <div class="type-substrate-container">
+
+
+      <div class="simulation-type">
+        <label for="configType">Select Config Type:</label>
+        <select class="form-control mb-3" id="configType" [(ngModel)]="selectedConfigType" name="configType" (ngModelChange)="onConfigTypeChange()">
+          <option *ngFor="let type of configTypes" [value]="type.id">{{ type.name }}</option>
+        </select>
+      </div>
+
+      <div class="substrate-btn">
+        <button id="substrate-btn" (click)="onAdvancedClick()">Configure Substrate</button>
+      </div>
+
     </div>
+
     <form [formGroup]="basicSettingsForm">
         <!-- Input for Growth Cone Count -->
         <div class="form-group form-group-basic">
@@ -41,10 +52,10 @@
 
   <div class="advanced-settings" *ngIf="showAdvancedSettings">
 
-    <div class="possibility-settings">
+    <div class="step-settings">
       <label class="settings-header">Step Decision</label>
 
-      <form  [formGroup]="possibilitySettingsForm">
+      <form  [formGroup]="stepDecisionForm">
         <!-- X Step Possibility Input -->
         <div class="form-group">
           <label for="x_step_possibility">X Step Bias:</label>
@@ -58,7 +69,7 @@
         </div>
 
         <!-- Sigma Input -->
-        <div *ngIf="!possibilitySettingsForm.get('force')?.value" class="form-group">
+        <div *ngIf="!stepDecisionForm.get('force')?.value" class="form-group">
           <label for="sigma">Standard Deviation:</label>
           <input type="number" id="sigma" class="form-control" formControlName="sigma" placeholder="Enter Standard Deviation">
         </div>
@@ -68,12 +79,47 @@
           <input type="checkbox" id="force" class="form-check-input" formControlName="force">
           <label class="form-check-label" for="force">Accept Every Step</label>
         </div>
-
-
-
-
-
       </form>
+
+
+    </div>
+
+    <div class="gc-settings">
+      <label class="settings-header">Growth Cone</label>
+
+      <form  [formGroup]="gcForm">
+
+        <div class="form-group">
+          <label for="x_step_possibility">Ligand Min:</label>
+          <input type="number" id="test1" class="form-control" formControlName="x_step_possibility" placeholder="Enter X Step Bias">
+        </div>
+
+        <div class="form-group">
+          <label for="x_step_possibility">Ligand Max:</label>
+          <input type="number" id="test2" class="form-control" formControlName="x_step_possibility" placeholder="Enter X Step Bias">
+        </div>
+
+        <div class="form-group">
+          <label for="x_step_possibility">Ligand Steepness:</label>
+          <input type="number" id="test3" class="form-control" formControlName="x_step_possibility" placeholder="Enter X Step Bias">
+        </div>
+
+        <div class="form-group">
+          <label for="x_step_possibility">Receptor Min:</label>
+          <input type="number" id="test4" class="form-control" formControlName="x_step_possibility" placeholder="Enter X Step Bias">
+        </div>
+
+        <div class="form-group">
+          <label for="x_step_possibility">Receptor Max:</label>
+          <input type="number" id="test5" class="form-control" formControlName="x_step_possibility" placeholder="Enter X Step Bias">
+        </div>
+
+        <div class="form-group">
+          <label for="x_step_possibility">Receptor Steepness:</label>
+          <input type="number" id="test6" class="form-control" formControlName="x_step_possibility" placeholder="Enter X Step Bias">
+        </div>
+      </form>
+
 
     </div>
 

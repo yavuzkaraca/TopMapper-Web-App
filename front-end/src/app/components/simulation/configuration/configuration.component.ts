@@ -36,7 +36,8 @@ export class ConfigurationComponent implements OnInit {
 
   /** Form groups for different configuration sections */
   basicSettingsForm: FormGroup = new FormGroup({});
-  possibilitySettingsForm: FormGroup = new FormGroup<any>({});
+  stepDecisionForm: FormGroup = new FormGroup<any>({});
+  gcForm: FormGroup = new FormGroup<any>({});
   switchesForm: FormGroup = new FormGroup<any>({});
   adaptationForm: FormGroup = new FormGroup<any>({});
 
@@ -61,8 +62,14 @@ export class ConfigurationComponent implements OnInit {
     this.getDefaultConfig();
   }
 
+  validateValues(){
+
+  }
+
   /** Initiates simulation with merged configuration values */
   startSimulation() {
+    this.validateValues() // check if all values are valid
+
     const mergedValues = this.getMergedFormValues();
 
     // Update currentConfig with merged values
@@ -76,6 +83,7 @@ export class ConfigurationComponent implements OnInit {
       response => console.log(response),
       error => console.error('Error:', error)
     );
+
   }
 
   /** Handles configuration type changes and reinitializes the form */
@@ -95,7 +103,7 @@ export class ConfigurationComponent implements OnInit {
   private getMergedFormValues() {
     return {
       ...this.basicSettingsForm.value,
-      ...this.possibilitySettingsForm.value,
+      ...this.stepDecisionForm.value,
       ...this.switchesForm.value,
       ...this.adaptationForm.value
     };
@@ -119,7 +127,7 @@ export class ConfigurationComponent implements OnInit {
       step_num: [this.currentConfig?.step_num]
     });
 
-    this.possibilitySettingsForm = this.fb.group({
+    this.stepDecisionForm = this.fb.group({
       x_step_possibility: [this.currentConfig?.x_step_possibility],
       y_step_possibility: [this.currentConfig?.y_step_possibility],
       sigmoid_steepness: [this.currentConfig?.sigmoid_steepness],
