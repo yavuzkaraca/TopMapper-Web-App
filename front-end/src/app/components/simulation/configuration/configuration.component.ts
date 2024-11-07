@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef} from '@angular/core';
 import { SimulationService } from "../../../services/simulation.service";
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NgForOf, NgIf } from "@angular/common";
@@ -65,44 +65,46 @@ export class ConfigurationComponent implements OnInit {
    * @param simulationService Service to interact with backend simulation API.
    * @param fb FormBuilder to create reactive forms.
    * @param dialog
+   * @param cdr
    */
   constructor(
     private simulationService: SimulationService,
     private fb: FormBuilder,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private cdr: ChangeDetectorRef // Inject ChangeDetectorRef here
   ) {
 
     this.basicSettingsForm = this.fb.group({
-      gc_count: null,
-      gc_size: null,
-      step_size: null,
-      step_num: null
+        gc_count: [null, { updateOn: 'blur' }],
+        gc_size: [null, { updateOn: 'blur' }],
+        step_size: [null, { updateOn: 'blur' }],
+        step_num: [null, { updateOn: 'blur' }]
     });
 
-
     this.stepDecisionForm = this.fb.group({
-      x_step_possibility: null,
-      y_step_possibility: null,
-      sigmoid_steepness: null,
-      sigmoid_shift: null,
-      sigmoid_height: null,
-      sigma: null,
-      force: null,
+        x_step_possibility: [null, { updateOn: 'blur' }],
+        y_step_possibility: [null, { updateOn: 'blur' }],
+        sigmoid_steepness: [null, { updateOn: 'blur' }],
+        sigmoid_shift: [null, { updateOn: 'blur' }],
+        sigmoid_height: [null, { updateOn: 'blur' }],
+        sigma: [null, { updateOn: 'blur' }],
+        force: [null, { updateOn: 'blur' }]
     });
 
     this.switchesForm = this.fb.group({
-      forward_sig: null,
-      reverse_sig: null,
-      ff_inter: null,
-      ft_inter: null,
+        forward_sig: [null, { updateOn: 'blur' }],
+        reverse_sig: [null, { updateOn: 'blur' }],
+        ff_inter: [null, { updateOn: 'blur' }],
+        ft_inter: [null, { updateOn: 'blur' }]
     });
 
     this.adaptationForm = this.fb.group({
-      adaptation_enabled: null,
-      adaptation_mu: null,
-      adaptation_lambda: null,
-      adaptation_history: null,
+        adaptation_enabled: [null, { updateOn: 'blur' }],
+        adaptation_mu: [null, { updateOn: 'blur' }],
+        adaptation_lambda: [null, { updateOn: 'blur' }],
+        adaptation_history: [null, { updateOn: 'blur' }]
     });
+
 
 
   }
@@ -184,36 +186,44 @@ export class ConfigurationComponent implements OnInit {
   }
 
   /** Initializes form groups with current configuration values */
+// Use detectChanges in initForm() after patching values
   private initForm() {
-    this.basicSettingsForm.patchValue({
-      gc_count: this.currentConfig.gc_count,
-      gc_size: this.currentConfig.gc_size,
-      step_size: this.currentConfig.step_size,
-      step_num: this.currentConfig.step_num
-    });
+      this.basicSettingsForm.patchValue({
+          gc_count: this.currentConfig.gc_count,
+          gc_size: this.currentConfig.gc_size,
+          step_size: this.currentConfig.step_size,
+          step_num: this.currentConfig.step_num
+      });
+      this.basicSettingsForm.updateValueAndValidity();
 
-    this.stepDecisionForm.patchValue({
-      x_step_possibility: this.currentConfig?.x_step_possibility,
-      y_step_possibility: this.currentConfig?.y_step_possibility,
-      sigmoid_steepness: this.currentConfig?.sigmoid_steepness,
-      sigmoid_shift: this.currentConfig?.sigmoid_shift,
-      sigmoid_height: this.currentConfig?.sigmoid_height,
-      sigma: this.currentConfig?.sigma,
-      force: this.currentConfig?.force
-    });
+      this.stepDecisionForm.patchValue({
+          x_step_possibility: this.currentConfig?.x_step_possibility,
+          y_step_possibility: this.currentConfig?.y_step_possibility,
+          sigmoid_steepness: this.currentConfig?.sigmoid_steepness,
+          sigmoid_shift: this.currentConfig?.sigmoid_shift,
+          sigmoid_height: this.currentConfig?.sigmoid_height,
+          sigma: this.currentConfig?.sigma,
+          force: this.currentConfig?.force
+      });
+      this.stepDecisionForm.updateValueAndValidity();
 
-    this.switchesForm.patchValue({
-      forward_sig: this.currentConfig?.forward_sig,
-      reverse_sig: this.currentConfig?.reverse_sig,
-      ff_inter: this.currentConfig?.ff_inter,
-      ft_inter: this.currentConfig?.ft_inter,
-    });
+      this.switchesForm.patchValue({
+          forward_sig: this.currentConfig?.forward_sig,
+          reverse_sig: this.currentConfig?.reverse_sig,
+          ff_inter: this.currentConfig?.ff_inter,
+          ft_inter: this.currentConfig?.ft_inter,
+      });
+      this.switchesForm.updateValueAndValidity();
 
-    this.adaptationForm.patchValue({
-      adaptation_enabled: this.currentConfig?.adaptation_enabled,
-      adaptation_mu: this.currentConfig?.adaptation_mu,
-      adaptation_lambda: this.currentConfig?.adaptation_lambda,
-      adaptation_history: this.currentConfig?.adaptation_history,
-    });
+      this.adaptationForm.patchValue({
+          adaptation_enabled: this.currentConfig?.adaptation_enabled,
+          adaptation_mu: this.currentConfig?.adaptation_mu,
+          adaptation_lambda: this.currentConfig?.adaptation_lambda,
+          adaptation_history: this.currentConfig?.adaptation_history,
+      });
+      this.adaptationForm.updateValueAndValidity();
+
+      // Trigger change detection to immediately update UI
+      this.cdr.detectChanges();
   }
 }
