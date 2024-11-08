@@ -11,6 +11,7 @@ CORS(app)
 
 simulation_results = {}
 
+
 @app.route('/default_configs')
 def get_default_configs():
     return jsonify(cfg.default_configs)
@@ -18,9 +19,7 @@ def get_default_configs():
 
 @app.route('/start_simulation', methods=['POST'])
 def start_simulation():
-    print("POST request received")
     config = request.json
-    print(config)
 
     from build.object_factory import build_simulation
     simulation = build_simulation(config)
