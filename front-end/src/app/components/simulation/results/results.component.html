@@ -25,12 +25,13 @@
   <div class="images-section" *ngIf="resultImages">
     <h3>Result Visualizations</h3>
     <div class="images-container">
-      <div *ngFor="let imageName of resultImages | keyvalue">
+      <div *ngFor="let imageName of resultImages | keyvalue" class="image-item">
         <h4>{{ imageName.key | titlecase }}</h4>
-        <img [src]="'data:image/png;base64,' + imageName.value" alt="{{ imageName.key }}" />
+        <img [src]="'data:image/png;base64,' + imageName.value" alt="{{ imageName.key }}"/>
       </div>
     </div>
   </div>
+
 
   <!-- Back to Configuration Button -->
   <div class="results-buttons">

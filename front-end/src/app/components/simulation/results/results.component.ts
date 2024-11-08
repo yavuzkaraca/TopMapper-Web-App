@@ -33,6 +33,7 @@ export class ResultsComponent implements OnInit {
   fetchResults() {
     this.simulationService.getSimulationResults().subscribe(
       (data: any) => {
+        console.log(data)
         // Parse and assign data to display in the UI
         this.summaryData = data.summary;     // Assuming backend returns a summary section
         this.resultImages = data.images;     // Assuming backend returns a dictionary of base64 images

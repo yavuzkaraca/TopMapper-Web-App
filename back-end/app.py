@@ -39,6 +39,7 @@ def get_progress():
 @app.route('/simulation_results', methods=['GET'])
 def get_simulation_results():
     if simulation_results:
+        print(simulation_results)
         return jsonify(simulation_results)
     else:
         return jsonify({"error": "No simulation results found"}), 404
