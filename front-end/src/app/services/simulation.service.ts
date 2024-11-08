@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 const API_URL = "http://127.0.0.1:5000/"
@@ -8,7 +8,8 @@ const API_URL = "http://127.0.0.1:5000/"
 })
 export class SimulationService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   public getDefaultConfig() {
     return this.http.get(API_URL + 'default_configs');
@@ -21,4 +22,9 @@ export class SimulationService {
 
     return this.http.post(API_URL + 'start_simulation', config, httpOptions);
   }
+
+  public getSimulationResults()  {
+    return this.http.get(API_URL + 'simulation_results');
+  }
+
 }
