@@ -20,7 +20,7 @@ h2 {
 h3 {
   font-size: 1.4rem;
   color: var(--accent-color);
-  margin-bottom: 15px;
+  margin: auto;
   border-bottom: 2px solid var(--border-color);
   padding-bottom: 5px;
 }
@@ -55,22 +55,26 @@ h3 {
   margin-bottom: 5px;
 }
 
-/* Images Section */
+.config {
+  margin: 20px auto auto;
+  width: 40%;
+}
+
+
 /* Images Section */
 .images-section {
   margin-bottom: 30px;
 }
 
 .images-container {
-  display: flex;
-  flex-direction: column;  /* Stack images vertically */
-  gap: 30px;               /* Space between each image */
-  align-items: center;     /* Center images horizontally */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  align-items: start;
 }
 
 .image-item {
-  text-align: center;
-  max-width: 80%;          /* Limit width for larger screens */
+  box-sizing: border-box;
 }
 
 .image-item h4 {
@@ -78,8 +82,8 @@ h3 {
 }
 
 .image-item img {
-  width: 100%;             /* Take full width of .image-item */
-  max-width: 600px;        /* Set a max width for larger images */
+  width: 100%; /* Take full width of .image-item */
+  max-width: 600px; /* Set a max width for larger images */
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease;
@@ -152,3 +156,30 @@ button:hover {
     width: 80%;
   }
 }
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-image {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.modal-image:hover {
+  transform: scale(1.02);
+}
+
