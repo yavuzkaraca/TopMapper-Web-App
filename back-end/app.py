@@ -1,10 +1,8 @@
-from flask import Flask, render_template, request, jsonify, Response
-import io
-from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-from build import object_factory, config as cfg
-import visualization as vz
-from model.simulation import get_updated_progress
+from flask import Flask, request, jsonify
 from flask_cors import CORS
+
+from build import config as cfg
+from model.simulation import get_updated_progress
 
 app = Flask(__name__)
 CORS(app)
@@ -39,7 +37,6 @@ def get_progress():
 @app.route('/simulation_results', methods=['GET'])
 def get_simulation_results():
     if simulation_results:
-        print(simulation_results)
         return jsonify(simulation_results)
     else:
         return jsonify({"error": "No simulation results found"}), 404
