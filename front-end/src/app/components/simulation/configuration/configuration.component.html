@@ -2,51 +2,44 @@
   <h2>Configuration Settings</h2>
   <div class="settings">
     <div class="basic-settings">
-
       <div class="type-substrate-container">
-
-
         <div class="simulation-type">
-          <label for="configType">Select Config Type:</label>
+          <label for="configType">Select Config Type</label>
           <select class="form-control mb-3" id="configType" [(ngModel)]="selectedConfigType" name="configType"
                   (ngModelChange)="onConfigTypeChange()">
             <option *ngFor="let type of configTypes" [value]="type.id">{{ type.name }}</option>
           </select>
         </div>
-
         <div class="substrate-btn">
           <button id="substrate-btn" mat-button (click)="openSubstrateDialog()">Configure Substrate</button>
         </div>
-
-
       </div>
-
 
       <form [formGroup]="basicSettingsForm">
         <!-- Input for Growth Cone Count -->
         <div class="form-group form-group-basic">
-          <label for="gc_count">Growth Cone Count:</label>
+          <label for="gc_count">Growth Cone Count</label>
           <input type="number" class="form-control" id="gc_count" formControlName="gc_count"
                  placeholder="Enter Growth Cone Count">
         </div>
 
         <!-- Input for Growth Cone Size -->
         <div class="form-group form-group-basic">
-          <label for="gc_size">Growth Cone Radius:</label>
+          <label for="gc_size">Growth Cone Radius</label>
           <input type="number" class="form-control" id="gc_size" formControlName="gc_size"
                  placeholder="Enter Growth Cone Radius">
         </div>
 
         <!-- Input for Step Size -->
         <div class="form-group form-group-basic">
-          <label for="step_size">Step Size:</label>
+          <label for="step_size">Step Size</label>
           <input type="number" class="form-control" id="step_size" formControlName="step_size"
                  placeholder="Enter Step Size">
         </div>
 
         <!-- Input for Step Number -->
         <div class="form-group form-group-basic">
-          <label for="step_num">Step Number:</label>
+          <label for="step_num">Step Number</label>
           <input type="number" class="form-control" id="step_num" formControlName="step_num"
                  placeholder="Enter Step Number">
         </div>
@@ -105,21 +98,30 @@
         <form [formGroup]="stepDecisionForm">
           <!-- X Step Possibility Input -->
           <div class="form-group">
-            <label for="x_step_possibility">X Step Bias:</label>
+            <label for="x_step_possibility">
+              <span>X Step Bias</span>
+              <span class="tooltip-icon" appTooltip="Explanation of FF-Interaction Ramp-Up">?</span>
+            </label>
             <input type="number" id="x_step_possibility" class="form-control" formControlName="x_step_possibility"
                    placeholder="Enter X Step Bias">
           </div>
 
           <!-- Y Step Possibility Input -->
           <div class="form-group">
-            <label for="y_step_possibility">Y Step Bias:</label>
+            <label for="y_step_possibility">
+              <span>Y Step Bias</span>
+              <span class="tooltip-icon" appTooltip="Explanation of FF-Interaction Ramp-Up">?</span>
+            </label>
             <input type="number" id="y_step_possibility" class="form-control" formControlName="y_step_possibility"
                    placeholder="Enter Y Step Bias">
           </div>
 
           <!-- Sigma Input -->
           <div [hidden]="stepDecisionForm.get('force')?.value" class="form-group">
-            <label for="sigma">Standard Deviation:</label>
+            <label for="sigma">
+              <span>Standard Deviation</span>
+              <span class="tooltip-icon" appTooltip="Explanation of FF-Interaction Ramp-Up">?</span>
+            </label>
             <input type="number" id="sigma" class="form-control" formControlName="sigma"
                    placeholder="Enter Standard Deviation">
           </div>
@@ -177,21 +179,32 @@
                 <div class="ff-settings">
                   <!-- Sigmoid Steepness Input -->
                   <div class="form-group">
-                    <label for="sigmoid_steepness">FF-Interaction Ramp-Up:</label>
+                    <label for="sigmoid_steepness">
+                      <span>FF-Interaction Ramp-Up</span>
+                      <span class="tooltip-icon" appTooltip="Explanation of FF-Interaction Ramp-Up">?</span>
+                    </label>
                     <input type="number" id="sigmoid_steepness" class="form-control" formControlName="sigmoid_steepness"
                            placeholder="Enter FF-Interaction Ramp-Up">
                   </div>
 
                   <!-- Sigmoid Shift Input -->
                   <div class="form-group">
-                    <label for="sigmoid_shift">FF-Interaction Delay:</label>
+                    <label for="sigmoid_shift">
+                      <span>FF-Interaction Delay</span>
+                      <span class="tooltip-icon" appTooltip="Explanation of FF-Interaction Ramp-Up">?</span>
+                    </label>
+
                     <input type="number" id="sigmoid_shift" class="form-control" formControlName="sigmoid_shift"
                            placeholder="Enter FF-Interaction Delay">
                   </div>
 
                   <!-- Sigmoid Height Input -->
                   <div class="form-group">
-                    <label for="sigmoid_height">FF-Interaction Maximum:</label>
+                    <label for="sigmoid_height">
+                      <span>FF-Interaction Maximum</span>
+                      <span class="tooltip-icon" appTooltip="Explanation of FF-Interaction Ramp-Up">?</span>
+
+                    </label>
                     <input type="number" id="sigmoid_height" class="form-control" formControlName="sigmoid_height"
                            placeholder="Enter FF-Interaction Maximum">
                   </div>
@@ -216,21 +229,31 @@
             <div *ngIf="adaptationForm.get('adaptation_enabled')?.value">
               <!-- Adaptation Mu Input -->
               <div class="form-group">
-                <label for="adaptation_mu">Adaptation Coefficient:</label>
+                <label for="adaptation_mu">
+                  <span>Adaptation Coefficient</span>
+                  <span class="tooltip-icon" appTooltip="Explanation of FF-Interaction Ramp-Up">?</span>
+
+                </label>
                 <input type="number" id="adaptation_mu" class="form-control" formControlName="adaptation_mu"
                        placeholder="Enter Adaptation Coefficient">
               </div>
 
               <!-- Adaptation Lambda Input -->
               <div class="form-group">
-                <label for="adaptation_lambda">Resetting Force:</label>
+                <label for="adaptation_lambda">
+                  <span>Adaptation Coefficient</span>
+                  <span class="tooltip-icon" appTooltip="Explanation of FF-Interaction Ramp-Up">?</span>
+                </label>
                 <input type="number" id="adaptation_lambda" class="form-control" formControlName="adaptation_lambda"
                        placeholder="Enter Resetting Force">
               </div>
 
               <!-- Adaptation History Input -->
               <div class="form-group">
-                <label for="adaptation_history">Adaptation History:</label>
+                <label for="adaptation_history">
+                  <span>History Length</span>
+                  <span class="tooltip-icon" appTooltip="Explanation of FF-Interaction Ramp-Up">?</span>
+                </label>
                 <input type="number" id="adaptation_history" class="form-control" formControlName="adaptation_history"
                        placeholder="Enter Adaptation History">
               </div>

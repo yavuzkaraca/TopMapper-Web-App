@@ -27,12 +27,12 @@ label {
   margin-bottom: 10px; /* Add spacing between form elements */
 }
 
-.adaptation-checkbox{
+.adaptation-checkbox {
   margin-bottom: 0 !important;
   margin-left: 3px;
 }
 
-.force-checkbox{
+.force-checkbox {
   margin-left: 15px;
   margin-right: 10px;
   margin-top: 20px;
@@ -55,7 +55,7 @@ input[type=checkbox] {
   accent-color: var(--accent-color);
 }
 
-.interaction-switches{
+.interaction-switches {
   margin-left: 3px;
 }
 
@@ -100,13 +100,13 @@ button:hover {
   color: var(--text-primary); /* Invert text color on hover */
 }
 
-.substrate-btn{
+.substrate-btn {
   padding-top: 21px;
   padding-right: 12px;
 }
 
-#substrate-btn{
-  color: var(--text)!important;
+#substrate-btn {
+  color: var(--text) !important;
 }
 
 /* Simulation type */
@@ -127,17 +127,17 @@ button:hover {
   border-bottom: 2px solid var(--border-color); /* Line below the header */
 }
 
-.settings{
+.settings {
   margin-bottom: 30px;
   background-color: rgba(20, 28, 30, 0.8); /* Light background with some transparency */
   border-radius: 16px;
 }
 
-.ff-settings{
+.ff-settings {
   margin-top: 20px;
 }
 
-.step-settings, .gc-settings, .adaptation-settings, .interaction-settings{
+.step-settings, .gc-settings, .adaptation-settings, .interaction-settings {
   background-color: rgba(255, 255, 255, 0.1); /* Light background with some transparency */
   padding: 20px;
   margin-bottom: 20px;
@@ -172,14 +172,14 @@ button:hover {
   padding: 20px 20px 20px;
 }
 
-.gc-settings form{
+.gc-settings form {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* Four columns for advanced settings */
   column-gap: 20px;
   row-gap: 10px;
 }
 
-.type-substrate-container{
+.type-substrate-container {
   display: flex;
   justify-content: space-between; /* Distribute the forms side by side */
   gap: 20px; /* Space between the forms */
@@ -202,15 +202,15 @@ button:hover {
 
 .start-btn {
   display: flex;
-  justify-content: center;   /* Horizontally center the buttons */
-  align-items: center;       /* Vertically center the buttons (optional, if needed) */
+  justify-content: center; /* Horizontally center the buttons */
+  align-items: center; /* Vertically center the buttons (optional, if needed) */
 }
 
 #start-btn {
   width: 18%; /* Adjusted for better visibility */
   padding: 12px 24px; /* Adds padding for better button feel */
   background-color: var(--start-btn-color);
-  box-shadow: 0 4px 8px rgba(255, 180, 60, 0.6), 0 0 5px rgba(255, 200, 90, 0.5); /* A soft glow and enhanced shadow */
+  box-shadow: 0 4px 8px rgba(255, 180, 60, 0.5), 0 0 5px rgba(255, 200, 90, 0.4); /* A soft glow and enhanced shadow */
   color: #000000; /* Ensures text contrast */
   border: none; /* Removes default border */
   border-radius: 8px; /* Adds a smooth rounded look */
@@ -230,6 +230,61 @@ button:hover {
   transform: scale(0.98); /* Adds a click effect */
 }
 
+
+/* Positioning and Styling for Tooltip */
+.tooltip-icon {
+  display: inline-flex;
+  position: relative; /* Make this element the reference point for the absolute tooltip */
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem; /* Slightly smaller font size */
+  color: white; /* Icon text color */
+  background-color: var(--primary-gradient-end); /* Background color for the circle */
+  width: 16px; /* Set width and height to create a perfect circle */
+  height: 16px;
+  border-radius: 50%; /* Makes it circular */
+  text-align: center;
+  margin-left: 5px; /* Space between label text and icon */
+  font-weight: bold;
+}
+
+
+.tooltip-box {
+  position: absolute; /* Keep absolute positioning to place the tooltip relative to the parent */
+  top: -60px; /* Position above the icon */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  background-color: rgba(20, 28, 30, 0.9);
+  color: #fff;
+  padding: 8px;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Arrow at the bottom of the tooltip box */
+.tooltip-box::after {
+  content: '';
+  position: absolute;
+  top: 100%; /* Bottom of the tooltip */
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: rgba(20, 28, 30, 0.9) transparent transparent transparent;
+}
+
+
+/* Show the tooltip on hover */
+.tooltip-icon:hover .tooltip-box,
+.tooltip-icon .tooltip-box[ng-reflect-ng-if="true"] {
+  opacity: 1;
+  visibility: visible;
+}
 
 
 /* Responsive adjustments */

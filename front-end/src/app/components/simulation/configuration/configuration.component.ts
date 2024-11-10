@@ -7,6 +7,7 @@ import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {SubstrateComponent} from '../substrate/substrate.component';
 import {RouterLink} from '@angular/router';
 import {MatButton} from '@angular/material/button';
+import { TooltipDirective } from './tooltip.directive';
 
 
 /**
@@ -24,6 +25,7 @@ import {MatButton} from '@angular/material/button';
     SubstrateComponent,
     RouterLink,
     MatButton,
+    TooltipDirective
   ],
   templateUrl: './configuration.component.html',
   styleUrl: './configuration.component.scss'
