@@ -1,3 +1,37 @@
+/* Loading Section */
+.loading-section {
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px auto;
+  max-width: 600px;
+  background-color: rgba(20, 28, 30, 0.8);
+  text-align: center;
+  color: var(--text-primary);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.loading-section h3 {
+  font-size: 1.4rem;
+  color: var(--accent-color);
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 5px;
+}
+
+.loading-section p {
+  font-size: 1rem;
+  color: var(--text-primary);
+  margin-top: 15px;
+}
+
+.mat-progress-bar {
+  height: 8px;
+  border-radius: 5px;
+  margin: 10px 0;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+
 /* Wrapper and Layout */
 .results-wrapper {
   padding: 30px;
@@ -25,28 +59,42 @@ h3 {
   padding-bottom: 5px;
 }
 
-/* Summary Cards */
+
+/* Summary Section Layout */
 .summary-section {
   background-color: rgba(255, 255, 255, 0.1);
-  padding: 20px;
+  padding: 30px;
   border-radius: 8px;
   margin-bottom: 30px;
   text-align: center;
 }
 
-.summary-cards {
+.summary-content {
   display: flex;
-  justify-content: space-around;
-  gap: 15px;
-  margin-top: 15px;
+  gap: 40px;
+  justify-content: space-between;
+}
+
+.left-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.right-column {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .summary-card {
   background-color: rgba(255, 255, 255, 0.9);
   color: black;
-  padding: 15px;
+  margin: 0 50px;
+  padding: 5px 5px;
   border-radius: 8px;
-  width: 30%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -56,9 +104,9 @@ h3 {
 }
 
 .config {
-  margin: 20px auto auto;
-  width: 40%;
+  width: 100%;
 }
+
 
 
 /* Images Section */
@@ -130,8 +178,8 @@ h3 {
 }
 
 button {
-  background-color: var(--accent-color);
-  color: var(--primary-gradient-start);
+  background-color: var(--accent-color); /* Updated button background */
+  color: var(--text); /* Adds a dark overlay */
   font-weight: bold;
   padding: 12px 25px;
   border: none;
@@ -181,5 +229,13 @@ button:hover {
 
 .modal-image:hover {
   transform: scale(1.02);
+}
+
+
+@media (max-width: 768px) {
+  .summary-content {
+    flex-direction: column;
+    gap: 20px;
+  }
 }
 

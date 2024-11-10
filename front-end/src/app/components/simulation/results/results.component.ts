@@ -3,6 +3,8 @@ import {Router} from '@angular/router';
 import {SimulationService} from '../../../services/simulation.service';
 import {TitleCasePipe, KeyValuePipe, NgForOf, NgIf, JsonPipe} from '@angular/common';
 import {SimulationResult} from '../../../models/simulation-result.model';
+import {interval, Subscription} from 'rxjs';
+import {MatProgressBar} from '@angular/material/progress-bar';
 
 
 @Component({
@@ -13,7 +15,8 @@ import {SimulationResult} from '../../../models/simulation-result.model';
     KeyValuePipe,
     NgForOf,
     NgIf,
-    JsonPipe
+    JsonPipe,
+    MatProgressBar
   ],
   templateUrl: './results.component.html',
   styleUrls: ['./results.component.scss']
@@ -21,6 +24,10 @@ import {SimulationResult} from '../../../models/simulation-result.model';
 export class ResultsComponent implements OnInit {
   summaryData: any;
   resultImages: { [key: string]: string } = {};  // Store images as a dictionary with names as keys
+
+  progress = 0;
+  loading = true;
+  progressCheckInterval: Subscription | undefined;
 
   resultImageMetadata = [
     {key: 'growth_cones', name: 'Growth Cones', position: 1},
@@ -48,12 +55,31 @@ export class ResultsComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private simulationService: SimulationService
+    private simulationService: SimulationService,
   ) {
   }
 
   ngOnInit() {
-    this.fetchResults();
+    this.checkProgress();
+  }
+
+  checkProgress() {
+    // Poll for progress every 2 seconds
+    this.progressCheckInterval = interval(500).subscribe(() => {
+      this.simulationService.getProgress().subscribe(
+        (progressData: any) => {
+          this.progress = progressData.progress;
+          if (this.progress >= 100) {
+            // Progress is complete; stop interval and fetch results
+            this.progressCheckInterval?.unsubscribe();
+            this.fetchResults();
+          }
+        },
+        (error) => {
+          console.error('Error fetching simulation progress:', error);
+        }
+      );
+    });
   }
 
   fetchResults() {
@@ -62,7 +88,9 @@ export class ResultsComponent implements OnInit {
         console.log(data)
         // Parse and assign data to display in the UI
         this.summaryData = data.summary;     // Assuming backend returns a summary section
-        this.resultImages = data.images;     // Assuming backend returns a dictionary of base64 images
+        this.resultImages = data.images;
+
+        this.loading = false;
       },
       (error) => {
         console.error('Error fetching simulation results:', error);
@@ -74,6 +102,4 @@ export class ResultsComponent implements OnInit {
     this.router.navigate(['/simulation']).then(() => {
     }); // Adjust the route as needed
   }
-
-
 }

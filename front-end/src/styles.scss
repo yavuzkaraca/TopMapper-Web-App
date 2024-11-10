@@ -22,13 +22,14 @@ html, body {
 :root {
   --primary-gradient-start: rgba(31,28,44,0.4);
   --primary-gradient-end: rgba(106,150,147,0.4);
+  --primary-gradient-end-dark: rgba(106,150,147,0.9);
   --text: rgba(31,28,44,0.9);
   --background-color: rgba(0,0,0,0.7);
-  --border-color: rgba(72,65,59,1);
+  --border-color: rgb(158, 166, 169);
   --accent-color: rgba(255,237,188,1);
   --shadow-color: rgba(0, 0, 0, 0.3);
   --checkbox-color: rgba(52, 73, 94, 1);
-  --start-btn-color: rgb(255, 213, 90);
+  --start-btn-color: rgb(194, 239, 232);
 }
 
 .container {
@@ -36,3 +37,5 @@ html, body {
   display: flex;
   flex-direction: column;
 }
+
+

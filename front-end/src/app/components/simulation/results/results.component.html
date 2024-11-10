@@ -1,27 +1,42 @@
-<div class="results-wrapper">
+<div *ngIf="loading" class="loading-section">
+  <h3>Simulation in Progress...</h3>
+  <mat-progress-bar
+    mode="determinate"
+    [value]="progress"
+    aria-label="Simulation Progress"
+  ></mat-progress-bar>
+  <p>{{ progress }}% complete</p>
+</div>
+
+<div class="results-wrapper" *ngIf="!loading">
   <h2>Simulation Results</h2>
 
-  <!-- Summary Section -->
-  <div class="summary-section" *ngIf="summaryData">
+  <div class="summary-section">
     <h3>Summary</h3>
     <p>Here’s a quick overview of your simulation.</p>
-    <div class="summary-cards">
-      <div class="summary-card">
-        <h4>Total Growth Cones</h4>
-        <p>{{ summaryData.totalGrowthCones }}</p>
+    <div class="summary-content">
+      <!-- Left Column -->
+      <div class="left-column">
+        <div class="summary-card">
+          <h4>Total Growth Cones</h4>
+          <p>{{ summaryData.totalGrowthCones }}</p>
+        </div>
+        <div class="summary-card">
+          <h4>Simulation Steps</h4>
+          <p>{{ summaryData.simulationSteps }}</p>
+        </div>
+        <div class="summary-card">
+          <h4>Computation Time</h4>
+          <p>{{ summaryData.computationTime }} seconds</p>
+        </div>
       </div>
-      <div class="summary-card">
-        <h4>Simulation Steps</h4>
-        <p>{{ summaryData.simulationSteps }}</p>
+      <!-- Right Column -->
+      <div class="right-column">
+        <div class="summary-card config" *ngIf="summaryData.config">
+          <h4>Configuration</h4>
+          <pre>{{ summaryData.config | json }}</pre>
+        </div>
       </div>
-      <div class="summary-card">
-        <h4>Computation Time</h4>
-        <p>{{ summaryData.computationTime }} seconds</p>
-      </div>
-    </div>
-    <div class="summary-card config" *ngIf="summaryData.config">
-      <h4>Configuration</h4>
-      <pre>{{ summaryData.config | json }}</pre>
     </div>
   </div>
 

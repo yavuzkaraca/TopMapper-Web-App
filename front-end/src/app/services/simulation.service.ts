@@ -27,4 +27,8 @@ export class SimulationService {
     return this.http.get(API_URL + 'simulation_results');
   }
 
+  public getProgress() {
+    return this.http.get(API_URL + 'progress');
+  }
+
 }
