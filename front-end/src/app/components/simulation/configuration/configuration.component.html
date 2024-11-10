@@ -100,7 +100,8 @@
           <div class="form-group">
             <label for="x_step_possibility">
               <span>X Step Bias</span>
-              <span class="tooltip-icon" appTooltip="Explanation of FF-Interaction Ramp-Up">?</span>
+              <span class="tooltip-icon"
+                    appTooltip="Introduces a directional preference along the X-axis, 0.5 correspons to neutral">?</span>
             </label>
             <input type="number" id="x_step_possibility" class="form-control" formControlName="x_step_possibility"
                    placeholder="Enter X Step Bias">
@@ -110,7 +111,8 @@
           <div class="form-group">
             <label for="y_step_possibility">
               <span>Y Step Bias</span>
-              <span class="tooltip-icon" appTooltip="Explanation of FF-Interaction Ramp-Up">?</span>
+              <span class="tooltip-icon"
+                    appTooltip="Introduces a directional preference along the Y-axis, 0.5 correspons to neutral">?</span>
             </label>
             <input type="number" id="y_step_possibility" class="form-control" formControlName="y_step_possibility"
                    placeholder="Enter Y Step Bias">
@@ -120,7 +122,8 @@
           <div [hidden]="stepDecisionForm.get('force')?.value" class="form-group">
             <label for="sigma">
               <span>Standard Deviation</span>
-              <span class="tooltip-icon" appTooltip="Explanation of FF-Interaction Ramp-Up">?</span>
+              <span class="tooltip-icon"
+                    appTooltip="Controls the determinism of step decisions, with lower values leading to steeper gaussian curve">?</span>
             </label>
             <input type="number" id="sigma" class="form-control" formControlName="sigma"
                    placeholder="Enter Standard Deviation">
@@ -129,7 +132,12 @@
           <!-- Force Checkbox -->
           <div class="form-group form-check force-checkbox">
             <input type="checkbox" id="force" class="form-check-input" formControlName="force">
-            <label class="form-check-label" for="force">Accept Every Step</label>
+            <label class="form-check-label" for="force">
+              <span>Accept All Steps</span>
+              <span class="tooltip-icon"
+                    appTooltip="Compels growth cones to accept all step proposals without guidance potential calculation">?</span>
+
+            </label>
           </div>
         </form>
 
@@ -163,13 +171,13 @@
               <!-- FT Interaction Checkbox -->
               <div class="form-group form-check">
                 <input type="checkbox" id="ft_inter" class="form-check-input" formControlName="ft_inter">
-                <label class="form-check-label" for="ft_inter">FT Interaction</label>
+                <label class="form-check-label" for="ft_inter">Fiber-Target Interaction</label>
               </div>
 
               <!-- FF Interaction Checkbox -->
               <div class="form-group form-check">
                 <input type="checkbox" id="ff_inter" class="form-check-input" formControlName="ff_inter">
-                <label class="form-check-label" for="ff_inter">FF Interaction</label>
+                <label class="form-check-label" for="ff_inter">Fiber-Fiber Interaction</label>
               </div>
 
 
@@ -181,7 +189,8 @@
                   <div class="form-group">
                     <label for="sigmoid_steepness">
                       <span>FF-Interaction Ramp-Up</span>
-                      <span class="tooltip-icon" appTooltip="Explanation of FF-Interaction Ramp-Up">?</span>
+                      <span class="tooltip-icon"
+                            appTooltip="Controls how quickly fiber-fiber interaction effects intensify at the start">?</span>
                     </label>
                     <input type="number" id="sigmoid_steepness" class="form-control" formControlName="sigmoid_steepness"
                            placeholder="Enter FF-Interaction Ramp-Up">
@@ -191,7 +200,8 @@
                   <div class="form-group">
                     <label for="sigmoid_shift">
                       <span>FF-Interaction Delay</span>
-                      <span class="tooltip-icon" appTooltip="Explanation of FF-Interaction Ramp-Up">?</span>
+                      <span class="tooltip-icon"
+                            appTooltip="Sets a delay before fiber-fiber interactions take effect in the simulation">?</span>
                     </label>
 
                     <input type="number" id="sigmoid_shift" class="form-control" formControlName="sigmoid_shift"
@@ -202,7 +212,8 @@
                   <div class="form-group">
                     <label for="sigmoid_height">
                       <span>FF-Interaction Maximum</span>
-                      <span class="tooltip-icon" appTooltip="Explanation of FF-Interaction Ramp-Up">?</span>
+                      <span class="tooltip-icon"
+                            appTooltip="Defines the peak influence of fiber-fiber interactions">?</span>
 
                     </label>
                     <input type="number" id="sigmoid_height" class="form-control" formControlName="sigmoid_height"
@@ -231,7 +242,8 @@
               <div class="form-group">
                 <label for="adaptation_mu">
                   <span>Adaptation Coefficient</span>
-                  <span class="tooltip-icon" appTooltip="Explanation of FF-Interaction Ramp-Up">?</span>
+                  <span class="tooltip-icon"
+                        appTooltip="Adjusts how quickly growth cones adapt to higher potential environments">?</span>
 
                 </label>
                 <input type="number" id="adaptation_mu" class="form-control" formControlName="adaptation_mu"
@@ -241,8 +253,9 @@
               <!-- Adaptation Lambda Input -->
               <div class="form-group">
                 <label for="adaptation_lambda">
-                  <span>Adaptation Coefficient</span>
-                  <span class="tooltip-icon" appTooltip="Explanation of FF-Interaction Ramp-Up">?</span>
+                  <span>Resetting Force</span>
+                  <span class="tooltip-icon"
+                        appTooltip="Adjusts how quickly growth cones come back to their original molecular signature">?</span>
                 </label>
                 <input type="number" id="adaptation_lambda" class="form-control" formControlName="adaptation_lambda"
                        placeholder="Enter Resetting Force">
@@ -252,7 +265,8 @@
               <div class="form-group">
                 <label for="adaptation_history">
                   <span>History Length</span>
-                  <span class="tooltip-icon" appTooltip="Explanation of FF-Interaction Ramp-Up">?</span>
+                  <span class="tooltip-icon"
+                        appTooltip="Determines the number of past steps considered in the simulation’s adaptive calculations">?</span>
                 </label>
                 <input type="number" id="adaptation_history" class="form-control" formControlName="adaptation_history"
                        placeholder="Enter Adaptation History">
