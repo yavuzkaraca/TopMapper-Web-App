@@ -37,7 +37,7 @@ export class ResultsComponent implements OnInit {
     {key: 'results_on_substrate', name: 'Results on Substrate', position: 5},
     {key: 'trajectory_on_substrate', name: 'Trajectory on Substrate', position: 6},
     {key: 'trajectories', name: 'Trajectories', position: 7},
-    {key: 'adaptation', name: 'Adaptation', position: 8}
+    {key: 'adaptation', name: 'History', position: 8}
   ];
 
   isModalOpen = false;
