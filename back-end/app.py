@@ -1,26 +1,33 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 
+from sqlalchemy import text
+from tables import db
+
 from build import config as cfg
 from model.simulation import get_updated_progress
-from tables import db
 
 app = Flask(__name__)
 CORS(app)
 
 # Set up the database URI directly
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://username:password@db/topMapper"
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://username:password@localhost:3306/topMapper"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialize SQLAlchemy
 db.init_app(app)
 
-# Create tables if they don't exist
 with app.app_context():
     db.create_all()
 
-simulation_results = {}
+try:
+    with app.app_context():
+        db.session.execute(text('SELECT 1'))
+        print("Database connected successfully!")
+except Exception as e:
+    print("Database connection failed:", e)
 
+simulation_results = {}
 
 @app.route('/default_configs')
 def get_default_configs():
