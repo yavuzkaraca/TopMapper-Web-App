@@ -2,16 +2,16 @@
   <h2>Register</h2>
   <form #loginForm="ngForm" (ngSubmit)="register()" class="form">
     <div class="form-group">
-      <label>Username*</label>
+      <label>Email*</label>
       <input
-        type="text"
-        [(ngModel)]="username"
-        name="username"
+        type="email"
+        [(ngModel)]="email"
+        name="email"
         required
-        #usernameField="ngModel"
+        #emailField="ngModel"
       />
-      <div *ngIf="usernameField.invalid && usernameField.touched" class="error">
-        Username is required
+      <div *ngIf="emailField.invalid && emailField.touched" class="error">
+        Email is required
       </div>
     </div>
 

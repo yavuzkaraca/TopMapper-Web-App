@@ -16,15 +16,16 @@ import {NgIf} from '@angular/common';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  username = '';
+  email = '';
   password = '';
 
   constructor(private authService: AuthService, private router: Router) {}
 
   login() {
-    this.authService.login(this.username, this.password).subscribe((success) => {
+    this.authService.login(this.email, this.password).subscribe((success) => {
       if (success) {
         console.log('Success')
+        this.router.navigate(['/about']);
       } else {
         console.log('Invalid username or password');
       }

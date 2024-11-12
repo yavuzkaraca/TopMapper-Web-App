@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {AuthService} from '../../../services/auth.service';
 import {FormsModule} from '@angular/forms';
-import {RouterLink} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {NgIf} from '@angular/common';
 
 @Component({
@@ -16,17 +16,18 @@ import {NgIf} from '@angular/common';
   styleUrls: ['./register.component.scss', '../login/login.component.scss']
 })
 export class RegisterComponent {
-  username = '';
+  email = '';
   password = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   register() {
-    this.authService.register(this.username, this.password).subscribe((success) => {
+    this.authService.register(this.email, this.password).subscribe((success) => {
       if (success) {
         console.log('Registration successful!');
+        this.router.navigate(['/login']);
       } else {
-        console.log('Username already exists');
+        console.log('Something went wrong');
       }
     });
   }
