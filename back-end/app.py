@@ -3,9 +3,21 @@ from flask_cors import CORS
 
 from build import config as cfg
 from model.simulation import get_updated_progress
+from tables import db
 
 app = Flask(__name__)
 CORS(app)
+
+# Set up the database URI directly
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://username:password@db/topMapper"
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+# Initialize SQLAlchemy
+db.init_app(app)
+
+# Create tables if they don't exist
+with app.app_context():
+    db.create_all()
 
 simulation_results = {}
 
