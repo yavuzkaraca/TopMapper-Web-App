@@ -16,7 +16,24 @@ html, body {
       /* bottom, image */
       black url('assets/background.jpg') no-repeat fixed center;
   background-size: cover;
+}
+
+.wrapper {
+  padding: 30px;
+  border-radius: 10px; /* Soft rounded corners for modern look */
+  max-width: 900px; /* Limiting the max width of the content */
+  margin: 20px auto; /* Center the form horizontally */
+  color: var(--text-primary); /* Use primary text color */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    padding: 20px;
   }
+}
 
 
 :root {
