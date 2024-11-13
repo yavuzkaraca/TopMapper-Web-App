@@ -1,0 +1,39 @@
+/* Form group styling */
+.dialog-form-group {
+  margin-bottom: 15px;
+}
+
+/* Input and select styling */
+input, select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--border-color);
+  background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+  color: black;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+
+input[type="checkbox"] {
+  transform: scale(1.2);
+  accent-color: var(--accent-color);
+  margin-right: 10px;
+}
+
+/* Dynamic form group spacing */
+.form-group {
+  margin-bottom: 15px; /* Space between form elements */
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .dialog-wrapper {
+    padding: 15px;
+  }
+
+  button {
+    width: 100%; /* Full-width buttons on smaller screens */
+  }
+}

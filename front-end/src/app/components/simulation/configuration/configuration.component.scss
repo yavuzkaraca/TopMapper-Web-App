@@ -102,7 +102,6 @@ button:hover, #substrate-btn:hover {
 
 .substrate-btn {
   padding-top: 21px;
-  padding-right: 12px;
 }
 
 #substrate-btn {
@@ -202,13 +201,14 @@ button:hover, #substrate-btn:hover {
 }
 
 .start-btn {
+  width: 18%;
   display: flex;
   justify-content: center; /* Horizontally center the buttons */
   align-items: center; /* Vertically center the buttons (optional, if needed) */
 }
 
 #start-btn {
-  width: 18%; /* Adjusted for better visibility */
+  width: 100%; /* Adjusted for better visibility */
   padding: 12px 24px; /* Adds padding for better button feel */
   background-color: var(--start-btn-color);
   box-shadow: 0 4px 8px rgba(170, 217, 203, 0.4), 0 0 5px rgba(74, 112, 96, 0.4); /* A soft glow and enhanced shadow */

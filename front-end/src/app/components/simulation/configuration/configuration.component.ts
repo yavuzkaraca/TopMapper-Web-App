@@ -7,7 +7,7 @@ import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {SubstrateComponent} from '../substrate/substrate.component';
 import {RouterLink} from '@angular/router';
 import {MatButton} from '@angular/material/button';
-import { TooltipDirective } from './tooltip.directive';
+import {TooltipDirective} from './tooltip.directive';
 
 
 /**
@@ -51,7 +51,7 @@ export class ConfigurationComponent implements OnInit {
   basicSettingsForm: FormGroup;
 
   stepDecisionForm: FormGroup = new FormGroup<any>({});
-  // gcForm: FormGroup = new FormGroup<any>({});
+  gcForm: FormGroup = new FormGroup<any>({});
   switchesForm: FormGroup = new FormGroup<any>({});
   adaptationForm: FormGroup = new FormGroup<any>({});
 
@@ -86,6 +86,16 @@ export class ConfigurationComponent implements OnInit {
       sigma: [null],
       force: [null]
     });
+
+    this.gcForm = this.fb.group({
+      ligand_min: [null],
+      ligand_max: [null],
+      ligand_steepness: [null],
+      receptor_min: [null],
+      receptor_max: [null],
+      receptor_steepness: [null],
+
+    })
 
     this.switchesForm = this.fb.group({
       forward_sig: [null],
@@ -149,14 +159,15 @@ export class ConfigurationComponent implements OnInit {
 
   openSubstrateDialog(): void {
     const dialogRef = this.dialog.open(SubstrateComponent, {
-      width: '400px', // Set width as desired
-      data: {} // Pass any data if necessary
+      width: '400px',
+      data: {type: this.selectedConfigType}
     });
 
-    // Optional: Handle dialog close event
     dialogRef.afterClosed().subscribe(result => {
-      console.log('Dialog closed', result);
-      // Perform actions after dialog closes, if needed
+      if (result) {
+        console.log('Substrate config:', result);
+        this.currentConfig = {...this.currentConfig, ...result};
+      }
     });
   }
 

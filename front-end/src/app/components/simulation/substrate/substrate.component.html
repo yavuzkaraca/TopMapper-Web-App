@@ -1,6 +1,67 @@
 <mat-dialog-content>
-  <!-- Dialog content goes here -->
-  <p>Configure your substrate settings here.</p>
+  <form [formGroup]="substrateForm">
+    <div class="form-group">
+      <label>Rows</label>
+      <input type="number" formControlName="ROWS" />
+    </div>
+    <div class="form-group">
+      <label>Columns</label>
+      <input type="number" formControlName="COLS" />
+    </div>
+
+    <!-- Dynamic fields based on the selected type -->
+    <div class="form-group" *ngIf="substrateForm.controls['CONTINUOUS_SIGNAL_START']">
+      <label>Continuous Signal Start</label>
+      <input type="number" formControlName="CONTINUOUS_SIGNAL_START" />
+    </div>
+    <div class="form-group" *ngIf="substrateForm.controls['CONTINUOUS_SIGNAL_END']">
+      <label>Continuous Signal End</label>
+      <input type="number" formControlName="CONTINUOUS_SIGNAL_END" />
+    </div>
+
+    <div class="form-group" *ngIf="substrateForm.controls['WEDGE_NARROW_EDGE']">
+      <label>Wedge Narrow Edge</label>
+      <input type="number" formControlName="WEDGE_NARROW_EDGE" />
+    </div>
+    <div class="form-group" *ngIf="substrateForm.controls['WEDGE_WIDE_EDGE']">
+      <label>Wedge Wide Edge</label>
+      <input type="number" formControlName="WEDGE_WIDE_EDGE" />
+    </div>
+
+    <div class="form-group" *ngIf="substrateForm.controls['STRIPE_FWD']">
+      <label>Stripe Fwd</label>
+      <input type="checkbox" formControlName="STRIPE_FWD" />
+    </div>
+    <div class="form-group" *ngIf="substrateForm.controls['STRIPE_REW']">
+      <label>Stripe Rew</label>
+      <input type="checkbox" formControlName="STRIPE_REW" />
+    </div>
+    <div class="form-group" *ngIf="substrateForm.controls['STRIPE_CONC']">
+      <label>Stripe Conc</label>
+      <input type="number" formControlName="STRIPE_CONC" />
+    </div>
+    <div class="form-group" *ngIf="substrateForm.controls['STRIPE_WIDTH']">
+      <label>Stripe Width</label>
+      <input type="number" formControlName="STRIPE_WIDTH" />
+    </div>
+
+    <div class="form-group" *ngIf="substrateForm.controls['GAP_BEGIN']">
+      <label>Gap Begin</label>
+      <input type="number" formControlName="GAP_BEGIN" />
+    </div>
+    <div class="form-group" *ngIf="substrateForm.controls['GAP_END']">
+      <label>Gap End</label>
+      <input type="number" formControlName="GAP_END" />
+    </div>
+    <div class="form-group" *ngIf="substrateForm.controls['GAP_FIRST_BLOCK']">
+      <label>Gap First Block</label>
+      <input type="text" formControlName="GAP_FIRST_BLOCK" />
+    </div>
+    <div class="form-group" *ngIf="substrateForm.controls['GAP_SECOND_BLOCK']">
+      <label>Gap Second Block</label>
+      <input type="text" formControlName="GAP_SECOND_BLOCK" />
+    </div>
+  </form>
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
