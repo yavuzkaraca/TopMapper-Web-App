@@ -4,10 +4,10 @@ import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule} from "@angular
 import {NgForOf, NgIf} from "@angular/common";
 
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
-import {SubstrateComponent} from '../substrate/substrate.component';
 import {RouterLink} from '@angular/router';
 import {MatButton} from '@angular/material/button';
 import {TooltipDirective} from './tooltip.directive';
+import {AuthService} from '../../../services/auth.service';
 
 
 /**
@@ -22,7 +22,6 @@ import {TooltipDirective} from './tooltip.directive';
     ReactiveFormsModule,
     NgIf,
     MatDialogModule,
-    SubstrateComponent,
     RouterLink,
     MatButton,
     TooltipDirective
@@ -32,9 +31,12 @@ import {TooltipDirective} from './tooltip.directive';
 })
 export class ConfigurationComponent implements OnInit {
 
+  userId: number = 0;
+
   /** Toggle for advanced settings display */
   showAdvancedSettings: boolean = false;
-  showDialog: boolean = false;
+  showSubstrateSettings: boolean = false;
+  // showDialog: boolean = false;
 
   /** Available simulation types */
   configTypes = [
@@ -50,6 +52,7 @@ export class ConfigurationComponent implements OnInit {
   /** Form groups for different configuration sections */
   basicSettingsForm: FormGroup;
 
+  substrateForm: FormGroup = new FormGroup<any>({});
   stepDecisionForm: FormGroup = new FormGroup<any>({});
   gcForm: FormGroup = new FormGroup<any>({});
   switchesForm: FormGroup = new FormGroup<any>({});
@@ -66,12 +69,21 @@ export class ConfigurationComponent implements OnInit {
    * @param simulationService Service to interact with backend simulation API.
    * @param fb FormBuilder to create reactive forms.
    * @param dialog
+   * @param authService
    */
   constructor(
     private simulationService: SimulationService,
     private fb: FormBuilder,
     public dialog: MatDialog,
+    private authService: AuthService
   ) {
+
+    this.substrateForm = this.fb.group({
+      rows: [null],
+      cols: [null]
+    })
+
+    this.configureSubstrateForm()
 
     this.basicSettingsForm = this.fb.group({
       gc_count: [null],
@@ -120,6 +132,11 @@ export class ConfigurationComponent implements OnInit {
   /** Lifecycle hook to initialize component and fetch default configuration */
   ngOnInit() {
     this.getDefaultConfig();
+    this.getUserId();
+  }
+
+  getUserId() {
+    this.userId = this.authService.getCurrentUserId()
   }
 
 
@@ -128,7 +145,6 @@ export class ConfigurationComponent implements OnInit {
 
     const mergedValues = this.getMergedFormValues();
 
-    console.log(mergedValues)
 
     // Update currentConfig with merged values
     Object.keys(mergedValues).forEach(key => {
@@ -137,7 +153,7 @@ export class ConfigurationComponent implements OnInit {
       }
     });
 
-    this.simulationService.startSimulation(this.currentConfig).subscribe(
+    this.simulationService.startSimulation(this.currentConfig, this.userId).subscribe(
       response => console.log(response),
       error => console.error('Error:', error)
     );
@@ -150,6 +166,74 @@ export class ConfigurationComponent implements OnInit {
       this.currentConfig = this.defaultConfig[this.selectedConfigType];
     }
     this.initForm();
+    this.configureSubstrateForm()
+    this.initSubstrateForm()
+  }
+
+  configureSubstrateForm() {
+    switch (this.selectedConfigType) {
+      case 'CONTINUOUS_GRADIENTS':
+        this.substrateForm.addControl('continuous_signal_start', this.fb.control(null));
+        this.substrateForm.addControl('continuous_signal_end', this.fb.control(null));
+        break;
+      case 'WEDGES':
+        this.substrateForm.addControl('wedge_narrow_edge', this.fb.control(null));
+        this.substrateForm.addControl('wedge_wide_edge', this.fb.control(null));
+        break;
+      case 'STRIPE':
+        this.substrateForm.addControl('stripe_fwd', this.fb.control(null));
+        this.substrateForm.addControl('stripe_rew', this.fb.control(null));
+        this.substrateForm.addControl('stripe_conc', this.fb.control(null));
+        this.substrateForm.addControl('stripe_width', this.fb.control(null));
+        break;
+      case 'GAP':
+        this.substrateForm.addControl('gap_begin', this.fb.control(null));
+        this.substrateForm.addControl('gap_end', this.fb.control(null));
+        this.substrateForm.addControl('gap_first_block', this.fb.control(null));
+        this.substrateForm.addControl('gap_second_block', this.fb.control(null));
+        break;
+    }
+  }
+
+  initSubstrateForm() {
+    switch (this.selectedConfigType) {
+      case 'CONTINUOUS_GRADIENTS':
+        this.substrateForm.patchValue({
+          rows: this.currentConfig.rows,
+          cols: this.currentConfig.cols,
+          continuous_signal_start: this.currentConfig.continuous_signal_start,
+          continuous_signal_end: this.currentConfig.continuous_signal_end,
+        });
+        break;
+      case 'WEDGES':
+        this.substrateForm.patchValue({
+          rows: this.currentConfig.rows,
+          cols: this.currentConfig.cols,
+          wedge_narrow_edge: this.currentConfig.wedge_narrow_edge,
+          wedge_wide_edge: this.currentConfig.wedge_wide_edge,
+        });
+        break;
+      case 'STRIPE':
+        this.substrateForm.patchValue({
+          rows: this.currentConfig.rows,
+          cols: this.currentConfig.cols,
+          stripe_fwd: this.currentConfig.stripe_fwd,
+          stripe_rew: this.currentConfig.stripe_rew,
+          stripe_conc: this.currentConfig.stripe_conc,
+          stripe_width: this.currentConfig.stripe_width,
+        });
+        break;
+      case 'GAP':
+        this.substrateForm.patchValue({
+          rows: this.currentConfig.rows,
+          cols: this.currentConfig.cols,
+          gap_begin: this.currentConfig.gap_begin,
+          gap_end: this.currentConfig.gap_end,
+          gap_first_block: this.currentConfig.gap_first_block,
+          gap_second_block: this.currentConfig.gap_second_block,
+        });
+        break;
+    }
   }
 
   /** Toggles advanced settings visibility */
@@ -157,18 +241,8 @@ export class ConfigurationComponent implements OnInit {
     this.showAdvancedSettings = !this.showAdvancedSettings;
   }
 
-  openSubstrateDialog(): void {
-    const dialogRef = this.dialog.open(SubstrateComponent, {
-      width: '400px',
-      data: {type: this.selectedConfigType}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        console.log('Substrate config:', result);
-        this.currentConfig = {...this.currentConfig, ...result};
-      }
-    });
+  onSubstrateClick() {
+    this.showSubstrateSettings = !this.showSubstrateSettings;
   }
 
 
@@ -178,13 +252,15 @@ export class ConfigurationComponent implements OnInit {
       ...this.basicSettingsForm.value,
       ...this.stepDecisionForm.value,
       ...this.switchesForm.value,
-      ...this.adaptationForm.value
+      ...this.adaptationForm.value,
+      ...this.substrateForm.value
     };
   }
 
   /** Fetches the default configuration from backend and initializes forms */
   private getDefaultConfig() {
     this.simulationService.getDefaultConfig().subscribe((data: any) => {
+      console.log(data)
       this.defaultConfig = data;
       this.currentConfig = data[this.selectedConfigType || 'CONTINUOUS_GRADIENTS'];
       this.initForm()
@@ -194,6 +270,8 @@ export class ConfigurationComponent implements OnInit {
   /** Initializes form groups with current configuration values */
 // Use detectChanges in initForm() after patching values
   private initForm() {
+    this.initSubstrateForm();
+
     this.basicSettingsForm.patchValue({
       gc_count: this.currentConfig.gc_count,
       gc_size: this.currentConfig.gc_size,

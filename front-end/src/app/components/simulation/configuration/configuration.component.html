@@ -11,8 +11,122 @@
           </select>
         </div>
         <div class="substrate-btn">
-          <button id="substrate-btn" mat-button (click)="openSubstrateDialog()">Configure Substrate</button>
+          <button id="substrate-btn" mat-button (click)="onSubstrateClick()">Configure Substrate</button>
         </div>
+      </div>
+
+      <div class="substrate" [hidden]="!showSubstrateSettings">
+        <form [formGroup]="substrateForm">
+          <div class="form-group">
+            <label for="rows">Rows</label>
+            <input type="number" class="form-control" id="rows" formControlName="rows"
+                   placeholder="Enter Number of Rows">
+          </div>
+
+          <div class="form-group">
+            <label for="cols">Columns</label>
+            <input type="number" class="form-control" id="cols" formControlName="cols"
+                   placeholder="Enter Number of Columns">
+          </div>
+
+          <!-- Dynamic fields based on the selected type -->
+          <div class="form-group" *ngIf="selectedConfigType === 'CONTINUOUS_GRADIENTS'">
+
+            <label for="continuous_signal_start">Continuous Signal Start</label>
+            <input type="number" class="form-control" id="continuous_signal_start"
+                   formControlName="continuous_signal_start"
+                   placeholder="Enter Number of Columns">
+
+          </div>
+          <div class="form-group" *ngIf="selectedConfigType === 'CONTINUOUS_GRADIENTS'">
+
+
+            <label for="continuous_signal_end">Continuous Signal End</label>
+            <input type="number" class="form-control" id="continuous_signal_end" formControlName="continuous_signal_end"
+                   placeholder="Enter Number of Columns">
+
+          </div>
+
+          <div class="form-group" *ngIf="selectedConfigType === 'WEDGES'">
+
+            <label for="wedge_narrow_edge">Wedge Narrow Edge</label>
+            <input type="number" class="form-control" id="wedge_narrow_edge" formControlName="wedge_narrow_edge"
+                   placeholder="Enter Number of Columns">
+          </div>
+
+
+          <div class="form-group" *ngIf="selectedConfigType === 'WEDGES'">
+
+
+            <label for="wedge_wide_edge">Wedge Wide Edge</label>
+            <input type="number" class="form-control" id="wedge_wide_edge" formControlName="wedge_wide_edge"
+                   placeholder="Enter Number of Columns">
+          </div>
+
+          <div class="form-group" *ngIf="selectedConfigType === 'STRIPE'">
+
+            <label for="stripe_fwd">Stripe Fwd</label>
+            <input type="checkbox" class="form-control" id="stripe_fwd" formControlName="stripe_fwd"
+                   placeholder="Enter Number of Columns">
+          </div>
+
+
+          <div class="form-group" *ngIf="selectedConfigType === 'STRIPE'">
+
+            <label for="stripe_rew">Stripe Rew</label>
+            <input type="checkbox" class="form-control" id="stripe_rew" formControlName="stripe_rew"
+                   placeholder="Enter Number of Columns">
+          </div>
+
+
+          <div class="form-group" *ngIf="selectedConfigType === 'STRIPE'">
+
+            <label for="stripe_conc">Stripe Conc</label>
+            <input type="number" class="form-control" id="stripe_conc" formControlName="stripe_conc"
+                   placeholder="Enter Number of Columns">
+          </div>
+
+
+          <div class="form-group" *ngIf="selectedConfigType === 'STRIPE'">
+
+            <label for="stripe_width">Stripe Width</label>
+            <input type="number" class="form-control" id="stripe_width" formControlName="stripe_width"
+                   placeholder="Enter Number of Columns">
+          </div>
+
+          <div class="form-group" *ngIf="selectedConfigType === 'GAP'">
+
+            <label for="gap_begin">Gap Begin</label>
+            <input type="number" class="form-control" id="gap_begin" formControlName="gap_begin"
+                   placeholder="Enter Number of Columns">
+          </div>
+
+
+          <div class="form-group" *ngIf="selectedConfigType === 'GAP'">
+
+            <label for="gap_end">Gap End</label>
+            <input type="number" class="form-control" id="gap_end" formControlName="gap_end"
+                   placeholder="Enter Number of Columns">
+          </div>
+
+
+          <div class="form-group" *ngIf="selectedConfigType === 'GAP'">
+
+            <label for="gap_first_block">Gap First Block</label>
+            <input type="text" class="form-control" id="gap_first_block" formControlName="gap_first_block"
+                   placeholder="Enter Number of Columns">
+          </div>
+
+
+          <div class="form-group" *ngIf="selectedConfigType === 'GAP'">
+
+            <label for="gap_second_block">Gap Second Block</label>
+            <input type="text" class="form-control" id="gap_second_block" formControlName="gap_second_block"
+                   placeholder="Enter Number of Columns">
+          </div>
+
+
+        </form>
       </div>
 
       <form [formGroup]="basicSettingsForm">
@@ -51,7 +165,6 @@
     </div>
 
     <div class="advanced-settings" [hidden]="!showAdvancedSettings">
-
 
       <div class="gc-settings">
         <label class="settings-header">Growth Cone</label>

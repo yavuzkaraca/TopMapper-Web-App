@@ -14,7 +14,10 @@ export class AuthService {
   private isLoggedInSubject = new BehaviorSubject<boolean>(false); // BehaviorSubject to track login state
   isLoggedIn$ = this.isLoggedInSubject.asObservable(); // Observable for components to subscribe
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    // Set the initial login state based on the presence of a userId in localStorage
+    this.isLoggedInSubject.next(this.isLoggedIn());
+  }
 
   register(email: string, password: string): Observable<boolean> {
     const newUser = { email, password };
@@ -48,6 +51,16 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     return localStorage.getItem('userId') != null;
+  }
+
+  getCurrentUserId(): number {
+    const userId = localStorage.getItem('userId');
+
+    if (userId) {
+      return Number(userId);
+    } else {
+      return 0
+    }
   }
 
   getCurrentUser(): Observable<User | null> {

@@ -35,10 +35,10 @@ export class ResultsComponent implements OnInit {
     {key: 'substrate_separate', name: 'Substrate Separate', position: 3},
     {key: 'growth_cones_post', name: 'Growth Cones Post', position: 4},
     {key: 'projection_linear', name: 'Projection Linear', position: 5},
+    {key: 'adaptation', name: 'History', position: 9},
     {key: 'results_on_substrate', name: 'Results on Substrate', position: 6},
     {key: 'trajectory_on_substrate', name: 'Trajectory on Substrate', position: 7},
-    {key: 'trajectories', name: 'Trajectories', position: 8},
-    {key: 'adaptation', name: 'History', position: 9}
+    {key: 'trajectories', name: 'Trajectories', position: 8}
   ];
 
   isModalOpen = false;

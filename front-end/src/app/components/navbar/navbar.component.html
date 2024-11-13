@@ -22,9 +22,17 @@
       <li class="list-item">
         <a class="link" href="https://github.com/yavuzkaraca/Topographic-Projection-Sim" target="_blank" rel="noopener noreferrer">Source Code</a>
       </li>
+      <li class="list-item">
+        <a class="link" [routerLink]="['/dashboard']" *ngIf="isLoggedIn">Dashboard</a>
+      </li>
     </ul>
   </nav>
-  <div class="login-btn" [routerLink]="['/login']">
+
+  <div class="login-btn" [routerLink]="['/login']" *ngIf="!isLoggedIn">
     <span>Login</span>
+  </div>
+
+  <div class="login-btn" (click)="logout()" *ngIf="isLoggedIn">
+    <span>Logout</span>
   </div>
 </div>

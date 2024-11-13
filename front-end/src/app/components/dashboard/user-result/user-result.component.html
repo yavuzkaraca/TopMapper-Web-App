@@ -1,0 +1,57 @@
+<div class="results-wrapper">
+  <h2>Simulation Results</h2>
+
+  <div class="summary-section">
+    <h3>Summary</h3>
+    <p>Here’s a quick overview of your simulation.</p>
+    <div class="summary-content">
+      <!-- Left Column -->
+      <div class="left-column">
+        <div class="summary-card">
+          <h4>Total Growth Cones</h4>
+          <p>{{ summaryData.totalGrowthCones }}</p>
+        </div>
+        <div class="summary-card">
+          <h4>Simulation Steps</h4>
+          <p>{{ summaryData.simulationSteps }}</p>
+        </div>
+        <div class="summary-card">
+          <h4>Computation Time</h4>
+          <p>{{ summaryData.computationTime }} seconds</p>
+        </div>
+      </div>
+      <!-- Right Column -->
+      <div class="right-column">
+        <div class="summary-card config" *ngIf="summaryData.config">
+          <h4>Configuration</h4>
+          <pre>{{ summaryData.config | json }}</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Result Images Section -->
+  <div class="images-section" *ngIf="resultImages">
+    <h3>Result Visualizations</h3>
+    <div class="images-container">
+      <div *ngFor="let imageMeta of resultImageMetadata" class="image-item">
+        <h4>{{ imageMeta.name }}</h4>
+        <img
+          [src]="'data:image/png;base64,' + resultImages[imageMeta.key]"
+          alt="{{ imageMeta.name }}"
+          (click)="openImageModal('data:image/png;base64,' + resultImages[imageMeta.key])"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Overlay for Enlarged Image -->
+  <div class="modal-overlay" *ngIf="isModalOpen" (click)="closeImageModal()">
+    <img class="modal-image" [src]="currentImageSrc" (click)="$event.stopPropagation()"/>
+  </div>
+
+  <!-- Back to Configuration Button -->
+  <div class="results-buttons">
+    <button (click)="goBack()">Back to dashboard</button>
+  </div>
+</div>

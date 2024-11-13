@@ -1,10 +1,11 @@
 import time
+from datetime import datetime
 
 from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 
 from sqlalchemy import text
-from tables import db, User
+from tables import db, User, Results, UserResults
 
 from build import config as cfg
 from model.simulation import get_updated_progress
@@ -41,7 +42,10 @@ def get_default_configs():
 
 @app.route('/start_simulation', methods=['POST'])
 def start_simulation():
-    config = request.json
+    data = request.json
+
+    config = data.get('config')
+    user_id = data.get('userId')
 
     from build.object_factory import build_simulation
     simulation = build_simulation(config)
@@ -58,7 +62,77 @@ def start_simulation():
     post_images = vz.get_images_post(simulation, result)
     simulation_results["images"].update(post_images)
 
+    if user_id:
+        # Check if user already has 20 results
+        user_results_count = UserResults.query.filter_by(user_id=user_id).count()
+
+        if user_results_count >= 20:
+            # Find the oldest result linked to this user and delete it
+            oldest_user_result = (
+                UserResults.query.filter_by(user_id=user_id)
+                .join(Results, UserResults.result_id == Results.id)
+                .order_by(Results.date.asc())
+                .first()
+            )
+
+            if oldest_user_result:
+                # Delete the associated result and the UserResults entry
+                db.session.delete(oldest_user_result)
+                db.session.commit()
+
+        # Create a new Results entry
+        new_result = Results(
+            date=datetime.utcnow(),
+            summary=simulation_results["summary"],
+            images=simulation_results["images"]
+        )
+
+        db.session.add(new_result)
+        db.session.commit()  # Commit to get the result ID
+
+        # Link the result to the user in UserResults
+        user_result = UserResults(user_id=user_id, result_id=new_result.id)
+        db.session.add(user_result)
+        db.session.commit()
+
     return jsonify({"status": "Simulation completed"})
+
+
+@app.route('/user/<int:user_id>/results', methods=['GET'])
+def get_user_results(user_id):
+    # Query all results associated with the user
+    user_results = UserResults.query.filter_by(user_id=user_id).all()
+
+    # Fetch result details for each result entry in UserResults
+    results = []
+    for user_result in user_results:
+        result = Results.query.get(user_result.result_id)
+        if result:
+            results.append({
+                'id': result.id,
+                'date': result.date,
+            })
+
+    return jsonify(results), 200
+
+
+# 2. Fetch a specific result by resultId
+@app.route('/result/<int:result_id>', methods=['GET'])
+def get_result(result_id):
+    # Query the result by its ID
+    result = Results.query.get(result_id)
+
+    # If the result doesn't exist, return an error
+    if not result:
+        return jsonify({'error': 'Result not found'}), 404
+
+    # Return the result details
+    return jsonify({
+        'id': result.id,
+        'date': result.date,
+        'summary': result.summary,
+        'images': result.images
+    }), 200
 
 
 @app.route('/progress', methods=['GET'])

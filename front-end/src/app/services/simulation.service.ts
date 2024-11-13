@@ -15,12 +15,17 @@ export class SimulationService {
     return this.http.get(API_URL + 'default_configs');
   }
 
-  public startSimulation(config: any) {
+  public startSimulation(config: any, userId: number) {
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/json'})
     }
 
-    return this.http.post(API_URL + 'start_simulation', config, httpOptions);
+    const payload = {
+      userId: userId,
+      config: config
+    };
+
+    return this.http.post(API_URL + 'start_simulation', payload, httpOptions);
   }
 
   public getSimulationResults()  {
