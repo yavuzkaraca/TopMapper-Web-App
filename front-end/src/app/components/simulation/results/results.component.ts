@@ -30,14 +30,15 @@ export class ResultsComponent implements OnInit {
   progressCheckInterval: Subscription | undefined;
 
   resultImageMetadata = [
-    {key: 'growth_cones', name: 'Growth Cones', position: 1},
+    {key: 'growth_cones_pre', name: 'Growth Cones Pre', position: 1},
     {key: 'substrate', name: 'Substrate Overview', position: 2},
     {key: 'substrate_separate', name: 'Substrate Separate', position: 3},
-    {key: 'projection_linear', name: 'Projection Linear', position: 4},
-    {key: 'results_on_substrate', name: 'Results on Substrate', position: 5},
-    {key: 'trajectory_on_substrate', name: 'Trajectory on Substrate', position: 6},
-    {key: 'trajectories', name: 'Trajectories', position: 7},
-    {key: 'adaptation', name: 'History', position: 8}
+    {key: 'growth_cones_post', name: 'Growth Cones Post', position: 4},
+    {key: 'projection_linear', name: 'Projection Linear', position: 5},
+    {key: 'results_on_substrate', name: 'Results on Substrate', position: 6},
+    {key: 'trajectory_on_substrate', name: 'Trajectory on Substrate', position: 7},
+    {key: 'trajectories', name: 'Trajectories', position: 8},
+    {key: 'adaptation', name: 'History', position: 9}
   ];
 
   isModalOpen = false;

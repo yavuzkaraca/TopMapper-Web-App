@@ -1,3 +1,5 @@
+import time
+
 from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 
@@ -6,6 +8,8 @@ from tables import db, User
 
 from build import config as cfg
 from model.simulation import get_updated_progress
+
+import visualization as vz
 
 app = Flask(__name__)
 CORS(app)
@@ -41,10 +45,18 @@ def start_simulation():
 
     from build.object_factory import build_simulation
     simulation = build_simulation(config)
+
+    # Add pre-simulation images
+    simulation_results["images"] = simulation_results.get("images", [])
+    pre_images = vz.get_images_pre(simulation)
+    simulation_results["images"] = pre_images
+
     result = simulation.run()
 
+    # Add post-simulation images
     simulation_results["summary"] = result.get_summary()
-    simulation_results["images"] = result.get_images()
+    post_images = vz.get_images_post(simulation, result)
+    simulation_results["images"].update(post_images)
 
     return jsonify({"status": "Simulation completed"})
 
@@ -57,6 +69,7 @@ def get_progress():
 @app.route('/simulation_results', methods=['GET'])
 def get_simulation_results():
     if simulation_results:
+        time.sleep(2)  # leaving enough time for fetching the images
         return jsonify(simulation_results)
     else:
         return jsonify({"error": "No simulation results found"}), 404
