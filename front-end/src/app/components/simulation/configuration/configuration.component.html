@@ -1,8 +1,12 @@
 <div class="wrapper">
   <h2>Configuration Settings</h2>
   <div class="settings">
+
     <div class="basic-settings">
+
+
       <div class="type-substrate-container">
+        <!-- Config Type Selection -->
         <div class="simulation-type">
           <label for="configType">Select Config Type</label>
           <select class="form-control mb-3" id="configType" [(ngModel)]="selectedConfigType" name="configType"
@@ -10,124 +14,18 @@
             <option *ngFor="let type of configTypes" [value]="type.id">{{ type.name }}</option>
           </select>
         </div>
-        <div class="substrate-btn">
-          <button id="substrate-btn" mat-button (click)="onSubstrateClick()">Configure Substrate</button>
+
+        <!-- Button container aligned to the right -->
+        <div class="button-container">
+          <div class="gc-btn">
+            <button id="gc-btn" (click)="onGcClick()">Configure GCs</button>
+          </div>
+          <div class="substrate-btn">
+            <button id="substrate-btn" (click)="onSubstrateClick()">Configure Substrate</button>
+          </div>
         </div>
       </div>
 
-      <div class="substrate" [hidden]="!showSubstrateSettings">
-        <form [formGroup]="substrateForm">
-          <div class="form-group">
-            <label for="rows">Rows</label>
-            <input type="number" class="form-control" id="rows" formControlName="rows"
-                   placeholder="Enter Number of Rows">
-          </div>
-
-          <div class="form-group">
-            <label for="cols">Columns</label>
-            <input type="number" class="form-control" id="cols" formControlName="cols"
-                   placeholder="Enter Number of Columns">
-          </div>
-
-          <!-- Dynamic fields based on the selected type -->
-          <div class="form-group" *ngIf="selectedConfigType === 'CONTINUOUS_GRADIENTS'">
-
-            <label for="continuous_signal_start">Continuous Signal Start</label>
-            <input type="number" class="form-control" id="continuous_signal_start"
-                   formControlName="continuous_signal_start"
-                   placeholder="Enter Number of Columns">
-
-          </div>
-          <div class="form-group" *ngIf="selectedConfigType === 'CONTINUOUS_GRADIENTS'">
-
-
-            <label for="continuous_signal_end">Continuous Signal End</label>
-            <input type="number" class="form-control" id="continuous_signal_end" formControlName="continuous_signal_end"
-                   placeholder="Enter Number of Columns">
-
-          </div>
-
-          <div class="form-group" *ngIf="selectedConfigType === 'WEDGES'">
-
-            <label for="wedge_narrow_edge">Wedge Narrow Edge</label>
-            <input type="number" class="form-control" id="wedge_narrow_edge" formControlName="wedge_narrow_edge"
-                   placeholder="Enter Number of Columns">
-          </div>
-
-
-          <div class="form-group" *ngIf="selectedConfigType === 'WEDGES'">
-
-
-            <label for="wedge_wide_edge">Wedge Wide Edge</label>
-            <input type="number" class="form-control" id="wedge_wide_edge" formControlName="wedge_wide_edge"
-                   placeholder="Enter Number of Columns">
-          </div>
-
-          <div class="form-group" *ngIf="selectedConfigType === 'STRIPE'">
-
-            <label for="stripe_fwd">Stripe Fwd</label>
-            <input type="checkbox" class="form-control" id="stripe_fwd" formControlName="stripe_fwd"
-                   placeholder="Enter Number of Columns">
-          </div>
-
-
-          <div class="form-group" *ngIf="selectedConfigType === 'STRIPE'">
-
-            <label for="stripe_rew">Stripe Rew</label>
-            <input type="checkbox" class="form-control" id="stripe_rew" formControlName="stripe_rew"
-                   placeholder="Enter Number of Columns">
-          </div>
-
-
-          <div class="form-group" *ngIf="selectedConfigType === 'STRIPE'">
-
-            <label for="stripe_conc">Stripe Conc</label>
-            <input type="number" class="form-control" id="stripe_conc" formControlName="stripe_conc"
-                   placeholder="Enter Number of Columns">
-          </div>
-
-
-          <div class="form-group" *ngIf="selectedConfigType === 'STRIPE'">
-
-            <label for="stripe_width">Stripe Width</label>
-            <input type="number" class="form-control" id="stripe_width" formControlName="stripe_width"
-                   placeholder="Enter Number of Columns">
-          </div>
-
-          <div class="form-group" *ngIf="selectedConfigType === 'GAP'">
-
-            <label for="gap_begin">Gap Begin</label>
-            <input type="number" class="form-control" id="gap_begin" formControlName="gap_begin"
-                   placeholder="Enter Number of Columns">
-          </div>
-
-
-          <div class="form-group" *ngIf="selectedConfigType === 'GAP'">
-
-            <label for="gap_end">Gap End</label>
-            <input type="number" class="form-control" id="gap_end" formControlName="gap_end"
-                   placeholder="Enter Number of Columns">
-          </div>
-
-
-          <div class="form-group" *ngIf="selectedConfigType === 'GAP'">
-
-            <label for="gap_first_block">Gap First Block</label>
-            <input type="text" class="form-control" id="gap_first_block" formControlName="gap_first_block"
-                   placeholder="Enter Number of Columns">
-          </div>
-
-
-          <div class="form-group" *ngIf="selectedConfigType === 'GAP'">
-
-            <label for="gap_second_block">Gap Second Block</label>
-            <input type="text" class="form-control" id="gap_second_block" formControlName="gap_second_block"
-                   placeholder="Enter Number of Columns">
-          </div>
-
-
-        </form>
-      </div>
 
       <form [formGroup]="basicSettingsForm">
         <!-- Input for Growth Cone Count -->
@@ -158,49 +56,115 @@
                  placeholder="Enter Step Number">
         </div>
       </form>
-    </div>
 
-    <div class="advanced-btn">
-      <button id="advanced-btn" (click)="onAdvancedClick()">Advanced</button>
-    </div>
+      <div class="substrate" [hidden]="!showSubstrateSettings">
+        <label class="settings-header">Substrate</label>
+        <form [formGroup]="substrateForm">
+          <div class="form-group">
+            <label for="rows">Rows</label>
+            <input type="number" class="form-control" id="rows" formControlName="rows"
+                   placeholder="Enter Number of Rows">
+          </div>
 
-    <div class="advanced-settings" [hidden]="!showAdvancedSettings">
+          <div class="form-group">
+            <label for="cols">Columns</label>
+            <input type="number" class="form-control" id="cols" formControlName="cols"
+                   placeholder="Enter Number of Columns">
+          </div>
 
-      <div class="gc-settings">
+          <!-- Dynamic fields based on the selected type -->
+          <div class="form-group" *ngIf="selectedConfigType === 'CONTINUOUS_GRADIENTS'">
+            <label for="continuous_signal_start">Continuous Signal Start</label>
+            <input type="number" class="form-control" id="continuous_signal_start"
+                   formControlName="continuous_signal_start"
+                   placeholder="Enter Number of Columns">
+          </div>
+          <div class="form-group" *ngIf="selectedConfigType === 'CONTINUOUS_GRADIENTS'">
+            <label for="continuous_signal_end">Continuous Signal End</label>
+            <input type="number" class="form-control" id="continuous_signal_end" formControlName="continuous_signal_end"
+                   placeholder="Enter Number of Columns">
+          </div>
+          <div class="form-group" *ngIf="selectedConfigType === 'WEDGES'">
+            <label for="wedge_narrow_edge">Wedge Narrow Edge</label>
+            <input type="number" class="form-control" id="wedge_narrow_edge" formControlName="wedge_narrow_edge"
+                   placeholder="Enter Number of Columns">
+          </div>
+          <div class="form-group" *ngIf="selectedConfigType === 'WEDGES'">
+            <label for="wedge_wide_edge">Wedge Wide Edge</label>
+            <input type="number" class="form-control" id="wedge_wide_edge" formControlName="wedge_wide_edge"
+                   placeholder="Enter Number of Columns">
+          </div>
+          <div class="form-group" *ngIf="selectedConfigType === 'STRIPE'">
+            <label for="stripe_fwd">Stripe Fwd</label>
+            <input type="checkbox" class="form-control" id="stripe_fwd" formControlName="stripe_fwd"
+                   placeholder="Enter Number of Columns">
+          </div>
+          <div class="form-group" *ngIf="selectedConfigType === 'STRIPE'">
+            <label for="stripe_rew">Stripe Rew</label>
+            <input type="checkbox" class="form-control" id="stripe_rew" formControlName="stripe_rew"
+                   placeholder="Enter Number of Columns">
+          </div>
+          <div class="form-group" *ngIf="selectedConfigType === 'STRIPE'">
+            <label for="stripe_conc">Stripe Conc</label>
+            <input type="number" class="form-control" id="stripe_conc" formControlName="stripe_conc"
+                   placeholder="Enter Number of Columns">
+          </div>
+          <div class="form-group" *ngIf="selectedConfigType === 'STRIPE'">
+            <label for="stripe_width">Stripe Width</label>
+            <input type="number" class="form-control" id="stripe_width" formControlName="stripe_width"
+                   placeholder="Enter Number of Columns">
+          </div>
+          <div class="form-group" *ngIf="selectedConfigType === 'GAP'">
+            <label for="gap_begin">Gap Begin</label>
+            <input type="number" class="form-control" id="gap_begin" formControlName="gap_begin"
+                   placeholder="Enter Number of Columns">
+          </div>
+          <div class="form-group" *ngIf="selectedConfigType === 'GAP'">
+            <label for="gap_end">Gap End</label>
+            <input type="number" class="form-control" id="gap_end" formControlName="gap_end"
+                   placeholder="Enter Number of Columns">
+          </div>
+          <div class="form-group" *ngIf="selectedConfigType === 'GAP'">
+            <label for="gap_first_block">Gap First Block</label>
+            <input type="text" class="form-control" id="gap_first_block" formControlName="gap_first_block"
+                   placeholder="Enter Number of Columns">
+          </div>
+          <div class="form-group" *ngIf="selectedConfigType === 'GAP'">
+            <label for="gap_second_block">Gap Second Block</label>
+            <input type="text" class="form-control" id="gap_second_block" formControlName="gap_second_block"
+                   placeholder="Enter Number of Columns">
+          </div>
+        </form>
+      </div>
+
+      <div class="gc-settings" [hidden]="!showGcSettings">
         <label class="settings-header">Growth Cone</label>
-
         <form [formGroup]="gcForm">
-
           <div class="form-group">
             <label for="ligand_min">Ligand Min:</label>
             <input type="number" id="ligand_min" class="form-control" formControlName="ligand_min"
                    placeholder="Enter Ligand Min">
           </div>
-
           <div class="ligand_max">
             <label for="ligand_max">Ligand Max:</label>
             <input type="number" id="ligand_max" class="form-control" formControlName="ligand_max"
                    placeholder="Enter Ligand Max">
           </div>
-
           <div class="ligand_steepness">
             <label for="ligand_steepness">Ligand Steepness:</label>
             <input type="number" id="ligand_steepness" class="form-control" formControlName="ligand_steepness"
                    placeholder="Enter Ligand Steepness">
           </div>
-
           <div class="receptor_min">
             <label for="receptor_min">Receptor Min:</label>
             <input type="number" id="receptor_min" class="form-control" formControlName="receptor_min"
                    placeholder="Enter Receptor Min">
           </div>
-
           <div class="receptor_max">
             <label for="receptor_max">Receptor Max:</label>
             <input type="number" id="receptor_max" class="form-control" formControlName="receptor_max"
                    placeholder="Enter Receptor Max">
           </div>
-
           <div class="receptor_steepness">
             <label for="receptor_steepness">Receptor Steepness:</label>
             <input type="number" id="receptor_steepness" class="form-control" formControlName="receptor_steepness"
@@ -210,56 +174,63 @@
       </div>
 
 
+    </div>
+
+    <div class="advanced-btn">
+      <button id="advanced-btn" (click)="onAdvancedClick()">Advanced</button>
+    </div>
+
+    <div class="advanced-settings" [hidden]="!showAdvancedSettings">
+
       <div class="step-settings">
         <label class="settings-header">Step Decision</label>
-
         <form [formGroup]="stepDecisionForm">
-          <!-- X Step Possibility Input -->
-          <div class="form-group">
-            <label for="x_step_possibility">
-              <span>X Step Bias</span>
-              <span class="tooltip-icon"
-                    appTooltip="Introduces a directional preference along the X-axis, 0.5 correspons to neutral">?</span>
-            </label>
-            <input type="number" id="x_step_possibility" class="form-control" formControlName="x_step_possibility"
-                   placeholder="Enter X Step Bias">
-          </div>
+          <div class="step-settings-grid">
+            <!-- X Step Bias -->
+            <div class="form-group">
+              <label for="x_step_possibility">
+                <span>X Step Bias</span>
+                <span class="tooltip-icon"
+                      appTooltip="Introduces a directional preference along the X-axis, 0.5 corresponds to neutral">?</span>
+              </label>
+              <input type="number" id="x_step_possibility" class="form-control" formControlName="x_step_possibility"
+                     placeholder="Enter X Step Bias">
+            </div>
 
-          <!-- Y Step Possibility Input -->
-          <div class="form-group">
-            <label for="y_step_possibility">
-              <span>Y Step Bias</span>
-              <span class="tooltip-icon"
-                    appTooltip="Introduces a directional preference along the Y-axis, 0.5 correspons to neutral">?</span>
-            </label>
-            <input type="number" id="y_step_possibility" class="form-control" formControlName="y_step_possibility"
-                   placeholder="Enter Y Step Bias">
-          </div>
+            <!-- Y Step Bias -->
+            <div class="form-group">
+              <label for="y_step_possibility">
+                <span>Y Step Bias</span>
+                <span class="tooltip-icon"
+                      appTooltip="Introduces a directional preference along the Y-axis, 0.5 corresponds to neutral">?</span>
+              </label>
+              <input type="number" id="y_step_possibility" class="form-control" formControlName="y_step_possibility"
+                     placeholder="Enter Y Step Bias">
+            </div>
 
-          <!-- Sigma Input -->
-          <div [hidden]="stepDecisionForm.get('force')?.value" class="form-group">
-            <label for="sigma">
-              <span>Standard Deviation</span>
-              <span class="tooltip-icon"
-                    appTooltip="Controls the determinism of step decisions, with lower values leading to steeper gaussian curve">?</span>
-            </label>
-            <input type="number" id="sigma" class="form-control" formControlName="sigma"
-                   placeholder="Enter Standard Deviation">
-          </div>
+            <!-- Standard Deviation -->
+            <div class="form-group" [hidden]="stepDecisionForm.get('force')?.value">
+              <label for="sigma">
+                <span>Standard Deviation</span>
+                <span class="tooltip-icon"
+                      appTooltip="Controls the determinism of step decisions, with lower values leading to steeper gaussian curve">?</span>
+              </label>
+              <input type="number" id="sigma" class="form-control" formControlName="sigma"
+                     placeholder="Enter Standard Deviation">
+            </div>
 
-          <!-- Force Checkbox -->
-          <div class="form-group form-check force-checkbox">
-            <input type="checkbox" id="force" class="form-check-input" formControlName="force">
-            <label class="form-check-label" for="force">
-              <span>Accept All Steps</span>
-              <span class="tooltip-icon"
-                    appTooltip="Compels growth cones to accept all step proposals without guidance potential calculation">?</span>
+            <!-- Accept All Steps Checkbox -->
+            <div class="form-group form-check force-checkbox">
+              <input type="checkbox" id="force" class="form-check-input" formControlName="force">
+              <label class="form-check-label" for="force">
+                <span>Accept All Steps</span>
+                <span class="tooltip-icon"
+                      appTooltip="Compels growth cones to accept all step proposals without guidance potential calculation">?</span>
+              </label>
+            </div>
 
-            </label>
           </div>
         </form>
-
-
       </div>
 
 

@@ -2,10 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {SimulationService} from "../../../services/simulation.service";
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgForOf, NgIf} from "@angular/common";
-
-import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {RouterLink} from '@angular/router';
-import {MatButton} from '@angular/material/button';
 import {TooltipDirective} from './tooltip.directive';
 import {AuthService} from '../../../services/auth.service';
 
@@ -21,9 +18,7 @@ import {AuthService} from '../../../services/auth.service';
     NgForOf,
     ReactiveFormsModule,
     NgIf,
-    MatDialogModule,
     RouterLink,
-    MatButton,
     TooltipDirective
   ],
   templateUrl: './configuration.component.html',
@@ -36,7 +31,7 @@ export class ConfigurationComponent implements OnInit {
   /** Toggle for advanced settings display */
   showAdvancedSettings: boolean = false;
   showSubstrateSettings: boolean = false;
-  // showDialog: boolean = false;
+  showGcSettings: boolean = false;
 
   /** Available simulation types */
   configTypes = [
@@ -68,13 +63,13 @@ export class ConfigurationComponent implements OnInit {
    * Constructor injects necessary services.
    * @param simulationService Service to interact with backend simulation API.
    * @param fb FormBuilder to create reactive forms.
-   * @param dialog
+
    * @param authService
    */
   constructor(
     private simulationService: SimulationService,
     private fb: FormBuilder,
-    public dialog: MatDialog,
+
     private authService: AuthService
   ) {
 
@@ -245,6 +240,10 @@ export class ConfigurationComponent implements OnInit {
     this.showSubstrateSettings = !this.showSubstrateSettings;
   }
 
+  onGcClick() {
+    this.showGcSettings = !this.showGcSettings;
+  }
+
 
   /** Combines all form values into a single configuration object */
   private getMergedFormValues() {
@@ -260,7 +259,6 @@ export class ConfigurationComponent implements OnInit {
   /** Fetches the default configuration from backend and initializes forms */
   private getDefaultConfig() {
     this.simulationService.getDefaultConfig().subscribe((data: any) => {
-      console.log(data)
       this.defaultConfig = data;
       this.currentConfig = data[this.selectedConfigType || 'CONTINUOUS_GRADIENTS'];
       this.initForm()

@@ -3,8 +3,8 @@
     <h2>Your Results</h2>
     <ul>
       <li *ngFor="let result of results" class="single-result">
-        <p><strong>Date:</strong> {{ result.date }}</p>
-        <button (click)="viewResult(result.id)">View Details</button>
+        <p class="result-content"><strong>Date:</strong> {{ result.date }}</p>
+        <button class="view-button" (click)="viewResult(result.id)">View Details</button>
       </li>
     </ul>
   </div>

@@ -1,9 +1,61 @@
+.wrapper {
+  max-width: 900px;
+  padding: 30px;
+  margin: 0 auto;
+  color: var(--text-primary);
+}
+
+h2 {
+  font-size: 1.8rem;
+  color: var(--accent-color);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
 .single-result {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  margin-bottom: 15px;
+  background-color: rgba(20, 28, 30, 0.8); /* Light background */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  color: var(--text-primary);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 
-  button {
-    margin-left: 50px;
-    padding: 15px 25px;
-    border-radius: 5px;
-  }
+.single-result:hover {
+  transform: scale(1.02); /* Slightly enlarges on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Shadow intensifies */
+}
+
+.result-content {
+  flex: 1; /* Takes up available space */
+}
+
+.view-button {
+  margin-left: 20px; /* Space between text and button */
+  background-color: var(--accent-color);
+  color: var(--text);
+  padding: 12px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.view-button:hover {
+  background-color: var(--primary-gradient-end);
+  color: var(--text-secondary);
+}
+
+.view-button:active {
+  background-color: var(--primary-gradient-end-dark);
+  transform: scale(0.98); /* Slight press effect */
 }

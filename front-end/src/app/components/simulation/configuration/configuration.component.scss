@@ -1,11 +1,11 @@
-/* Wrapper and layout */
-//.wrapper {
-//  padding: 30px;
-//  border-radius: 10px; /* Soft rounded corners for modern look */
-//  max-width: 900px; /* Limiting the max width of the content */
-//  margin: 20px auto; /* Center the form horizontally */
-//  color: var(--text-primary); /* Use primary text color */
-//}
+.wrapper {
+  width: 900px;
+  max-width: 900px;
+  padding: 30px;
+  border-radius: 10px;
+  margin: 20px auto;
+  color: var(--text-primary);
+}
 
 /* Typography */
 h2 {
@@ -100,12 +100,9 @@ button:hover, #substrate-btn:hover {
   color: var(--text-primary); /* Invert text color on hover */
 }
 
-.substrate-btn {
-  padding-top: 21px;
-}
 
 #substrate-btn {
-  background-color: var(--accent-color) ; /* Updated button background */
+  background-color: var(--accent-color); /* Updated button background */
   color: var(--text); /* Adds a dark overlay */
 }
 
@@ -137,10 +134,17 @@ button:hover, #substrate-btn:hover {
   margin-top: 20px;
 }
 
-.step-settings, .gc-settings, .adaptation-settings, .interaction-settings {
+.step-settings, .adaptation-settings, .interaction-settings {
   background-color: rgba(255, 255, 255, 0.1); /* Light background with some transparency */
   padding: 20px;
   margin-bottom: 20px;
+  border-radius: 8px;
+}
+
+.gc-settings, .substrate {
+  background-color: rgba(255, 255, 255, 0.1); /* Light background with some transparency */
+  padding: 20px;
+  margin-top: 20px;
   border-radius: 8px;
 }
 
@@ -162,10 +166,29 @@ button:hover, #substrate-btn:hover {
   padding: 20px;
 }
 
-.step-settings form {
+.step-settings {
+  background-color: rgba(255, 255, 255, 0.1); /* Light background with some transparency */
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.step-settings-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* Four columns for advanced settings */
-  gap: 20px;
+  grid-template-columns: repeat(4, 1fr); /* Four equal-width columns in one row */
+  gap: 20px; /* Space between columns */
+  max-width: 784px;
+}
+
+
+.force-checkbox[_ngcontent-ng-c685843302] {
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
+
+.label-line {
+  display: block; /* Ensures each span is on a new line */
+  font-size: 1rem; /* Adjust font size as needed */
 }
 
 .gc-settings {
@@ -176,19 +199,34 @@ button:hover, #substrate-btn:hover {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* Four columns for advanced settings */
   column-gap: 20px;
-  row-gap: 10px;
+  row-gap: 2px;
+}
+
+.substrate form {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Four columns for advanced settings */
+  column-gap: 20px;
+  row-gap: 2px;
 }
 
 .type-substrate-container {
   display: flex;
-  justify-content: space-between; /* Distribute the forms side by side */
-  gap: 20px; /* Space between the forms */
+  align-items: center; /* Align items vertically centered */
+  gap: 5px;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .adaptation-interaction-container {
   display: flex;
   justify-content: space-between; /* Distribute the forms side by side */
   gap: 20px; /* Space between the forms */
+}
+
+.button-container {
+  display: flex;
+  gap: 20px; /* Space between the buttons */
+  margin-left: auto; /* Pushes buttons to the right */
 }
 
 .adaptation-settings, .interaction-settings {
@@ -252,7 +290,7 @@ button:hover, #substrate-btn:hover {
 
 .tooltip-box {
   position: absolute; /* Keep absolute positioning to place the tooltip relative to the parent */
-  top: -60px; /* Position above the icon */
+  top: -65px; /* Position above the icon */
   left: 50%;
   transform: translateX(-50%);
   width: 200px;
