@@ -4,7 +4,6 @@
 
     <div class="basic-settings">
 
-
       <div class="type-substrate-container">
         <!-- Config Type Selection -->
         <div class="simulation-type">
@@ -32,28 +31,28 @@
         <div class="form-group form-group-basic">
           <label for="gc_count">Growth Cone Count</label>
           <input type="number" class="form-control" id="gc_count" formControlName="gc_count"
-                 placeholder="Enter Growth Cone Count">
+                 placeholder="Enter Growth Cone Count" min="1" max="500">
         </div>
 
         <!-- Input for Growth Cone Size -->
         <div class="form-group form-group-basic">
           <label for="gc_size">Growth Cone Radius</label>
           <input type="number" class="form-control" id="gc_size" formControlName="gc_size"
-                 placeholder="Enter Growth Cone Radius">
+                 placeholder="Enter Growth Cone Radius" min="1">
         </div>
 
         <!-- Input for Step Size -->
         <div class="form-group form-group-basic">
           <label for="step_size">Step Size</label>
           <input type="number" class="form-control" id="step_size" formControlName="step_size"
-                 placeholder="Enter Step Size">
+                 placeholder="Enter Step Size" min="1" step="1">
         </div>
 
         <!-- Input for Step Number -->
         <div class="form-group form-group-basic">
           <label for="step_num">Number of Steps</label>
           <input type="number" class="form-control" id="step_num" formControlName="step_num"
-                 placeholder="Enter Step Number">
+                 placeholder="Enter Step Number" min="1" max="100000" step="1">
         </div>
       </form>
 
@@ -63,13 +62,13 @@
           <div class="form-group">
             <label for="rows">Rows</label>
             <input type="number" class="form-control" id="rows" formControlName="rows"
-                   placeholder="Enter Number of Rows">
+                   placeholder="Enter Number of Rows" min="1" max="500" step="1">
           </div>
 
           <div class="form-group">
             <label for="cols">Columns</label>
             <input type="number" class="form-control" id="cols" formControlName="cols"
-                   placeholder="Enter Number of Columns">
+                   placeholder="Enter Number of Columns" min="1" max="500" step="1">
           </div>
 
           <!-- Dynamic fields based on the selected type -->
@@ -77,22 +76,22 @@
             <label for="continuous_signal_start">Continuous Signal Start</label>
             <input type="number" class="form-control" id="continuous_signal_start"
                    formControlName="continuous_signal_start"
-                   placeholder="Enter Number of Columns">
+                   placeholder="Enter Number of Columns" min="0.01" step="0.05">
           </div>
           <div class="form-group" *ngIf="selectedConfigType === 'CONTINUOUS_GRADIENTS'">
             <label for="continuous_signal_end">Continuous Signal End</label>
             <input type="number" class="form-control" id="continuous_signal_end" formControlName="continuous_signal_end"
-                   placeholder="Enter Number of Columns">
+                   placeholder="Enter Number of Columns" min="0.01" step="0.05">
           </div>
           <div class="form-group" *ngIf="selectedConfigType === 'WEDGES'">
             <label for="wedge_narrow_edge">Wedge Narrow Edge</label>
             <input type="number" class="form-control" id="wedge_narrow_edge" formControlName="wedge_narrow_edge"
-                   placeholder="Enter Number of Columns">
+                   placeholder="Enter Number of Columns" min="1">
           </div>
           <div class="form-group" *ngIf="selectedConfigType === 'WEDGES'">
             <label for="wedge_wide_edge">Wedge Wide Edge</label>
             <input type="number" class="form-control" id="wedge_wide_edge" formControlName="wedge_wide_edge"
-                   placeholder="Enter Number of Columns">
+                   placeholder="Enter Number of Columns" min="1">
           </div>
           <div class="form-group" *ngIf="selectedConfigType === 'STRIPE'">
             <label for="stripe_fwd">Stripe Fwd</label>
@@ -107,32 +106,37 @@
           <div class="form-group" *ngIf="selectedConfigType === 'STRIPE'">
             <label for="stripe_conc">Stripe Conc</label>
             <input type="number" class="form-control" id="stripe_conc" formControlName="stripe_conc"
-                   placeholder="Enter Number of Columns">
+                   placeholder="Enter Number of Columns" min="0.01" max="1" step="0.05">
           </div>
           <div class="form-group" *ngIf="selectedConfigType === 'STRIPE'">
             <label for="stripe_width">Stripe Width</label>
             <input type="number" class="form-control" id="stripe_width" formControlName="stripe_width"
-                   placeholder="Enter Number of Columns">
+                   placeholder="Enter Number of Columns" min="1">
           </div>
           <div class="form-group" *ngIf="selectedConfigType === 'GAP'">
             <label for="gap_begin">Gap Begin</label>
             <input type="number" class="form-control" id="gap_begin" formControlName="gap_begin"
-                   placeholder="Enter Number of Columns">
+                   placeholder="Enter Number of Columns" min="0.01" max="0.99" step="0.05">
           </div>
           <div class="form-group" *ngIf="selectedConfigType === 'GAP'">
             <label for="gap_end">Gap End</label>
             <input type="number" class="form-control" id="gap_end" formControlName="gap_end"
-                   placeholder="Enter Number of Columns">
+                   placeholder="Enter Number of Columns" min="0.01" max="0.99" step="0.05">
           </div>
           <div class="form-group" *ngIf="selectedConfigType === 'GAP'">
             <label for="gap_first_block">Gap First Block</label>
-            <input type="text" class="form-control" id="gap_first_block" formControlName="gap_first_block"
-                   placeholder="Enter Number of Columns">
+            <select class="form-control" id="gap_first_block" formControlName="gap_first_block">
+              <option value="ligand">Ligand</option>
+              <option value="receptor">Receptor</option>
+            </select>
           </div>
+
           <div class="form-group" *ngIf="selectedConfigType === 'GAP'">
             <label for="gap_second_block">Gap Second Block</label>
-            <input type="text" class="form-control" id="gap_second_block" formControlName="gap_second_block"
-                   placeholder="Enter Number of Columns">
+            <select class="form-control" id="gap_second_block" formControlName="gap_second_block">
+              <option value="ligand">Ligand</option>
+              <option value="receptor">Receptor</option>
+            </select>
           </div>
         </form>
       </div>
@@ -143,32 +147,32 @@
           <div class="form-group">
             <label for="ligand_min">Ligand Min:</label>
             <input type="number" id="ligand_min" class="form-control" formControlName="ligand_min"
-                   placeholder="Enter Ligand Min">
+                   placeholder="Enter Ligand Min" min="0.01" step="0.05">
           </div>
           <div class="ligand_max">
             <label for="ligand_max">Ligand Max:</label>
             <input type="number" id="ligand_max" class="form-control" formControlName="ligand_max"
-                   placeholder="Enter Ligand Max">
+                   placeholder="Enter Ligand Max" min="0.01" step="0.05">
           </div>
           <div class="ligand_steepness">
             <label for="ligand_steepness">Ligand Steepness:</label>
             <input type="number" id="ligand_steepness" class="form-control" formControlName="ligand_steepness"
-                   placeholder="Enter Ligand Steepness">
+                   placeholder="Enter Ligand Steepness" min="0.01" step="0.05">
           </div>
           <div class="receptor_min">
             <label for="receptor_min">Receptor Min:</label>
             <input type="number" id="receptor_min" class="form-control" formControlName="receptor_min"
-                   placeholder="Enter Receptor Min">
+                   placeholder="Enter Receptor Min" min="0.01" step="0.05">
           </div>
           <div class="receptor_max">
             <label for="receptor_max">Receptor Max:</label>
             <input type="number" id="receptor_max" class="form-control" formControlName="receptor_max"
-                   placeholder="Enter Receptor Max">
+                   placeholder="Enter Receptor Max" min="0.01" step="0.05">
           </div>
           <div class="receptor_steepness">
             <label for="receptor_steepness">Receptor Steepness:</label>
             <input type="number" id="receptor_steepness" class="form-control" formControlName="receptor_steepness"
-                   placeholder="Enter Receptor Steepness">
+                   placeholder="Enter Receptor Steepness" min="0.01" step="0.05">
           </div>
         </form>
       </div>
@@ -194,7 +198,7 @@
                       appTooltip="Introduces a directional preference along the X-axis, 0.5 corresponds to neutral">?</span>
               </label>
               <input type="number" id="x_step_possibility" class="form-control" formControlName="x_step_possibility"
-                     placeholder="Enter X Step Bias">
+                     placeholder="Enter X Step Bias" min="0" max="1" step="0.05">
             </div>
 
             <!-- Y Step Bias -->
@@ -205,7 +209,7 @@
                       appTooltip="Introduces a directional preference along the Y-axis, 0.5 corresponds to neutral">?</span>
               </label>
               <input type="number" id="y_step_possibility" class="form-control" formControlName="y_step_possibility"
-                     placeholder="Enter Y Step Bias">
+                     placeholder="Enter Y Step Bias" min="0" max="1" step="0.05">
             </div>
 
             <!-- Standard Deviation -->
@@ -216,7 +220,7 @@
                       appTooltip="Controls the determinism of step decisions, with lower values leading to steeper gaussian curve">?</span>
               </label>
               <input type="number" id="sigma" class="form-control" formControlName="sigma"
-                     placeholder="Enter Standard Deviation">
+                     placeholder="Enter Standard Deviation" min="0" max="1" step="0.05">
             </div>
 
             <!-- Accept All Steps Checkbox -->
@@ -261,7 +265,7 @@
                     </label>
 
                     <input type="number" id="forward_strength" class="form-control" formControlName="forward_strength"
-                           placeholder="Enter Forward Signal Coefficient">
+                           placeholder="Enter Forward Signal Coefficient" min="0.01" step="0.05">
                   </div>
                 </div>
               </div>
@@ -287,7 +291,7 @@
                     </label>
 
                     <input type="number" id="reverse_strength" class="form-control" formControlName="reverse_strength"
-                           placeholder="Enter Reverse Signal Coefficient">
+                           placeholder="Enter Reverse Signal Coefficient" min="0.01" step="0.05">
                   </div>
                 </div>
               </div>
@@ -325,7 +329,7 @@
                     </label>
                     <input type="number" id="sigmoid_steepness" class="form-control"
                            formControlName="sigmoid_steepness"
-                           placeholder="Enter FF-Interaction Ramp-Up">
+                           placeholder="Enter FF-Interaction Ramp-Up" min="0.01" step="0.5">
                   </div>
 
                   <!-- Sigmoid Shift Input -->
@@ -337,7 +341,7 @@
                     </label>
 
                     <input type="number" id="sigmoid_shift" class="form-control" formControlName="sigmoid_shift"
-                           placeholder="Enter FF-Interaction Delay">
+                           placeholder="Enter FF-Interaction Delay" min="0.01" step="0.5">
                   </div>
 
                   <!-- Sigmoid Height Input -->
@@ -349,7 +353,7 @@
 
                     </label>
                     <input type="number" id="sigmoid_height" class="form-control" formControlName="sigmoid_height"
-                           placeholder="Enter FF-Interaction Maximum">
+                           placeholder="Enter FF-Interaction Maximum" min="0.01" step="0.5">
                   </div>
                 </div>
               </div>
@@ -379,7 +383,7 @@
 
                 </label>
                 <input type="number" id="adaptation_mu" class="form-control" formControlName="adaptation_mu"
-                       placeholder="Enter Adaptation Coefficient">
+                       placeholder="Enter Adaptation Coefficient" min="0.01" step="0.005">
               </div>
 
               <!-- Adaptation Lambda Input -->
@@ -390,7 +394,7 @@
                         appTooltip="Adjusts how quickly growth cones come back to their original molecular signature">?</span>
                 </label>
                 <input type="number" id="adaptation_lambda" class="form-control" formControlName="adaptation_lambda"
-                       placeholder="Enter Resetting Force">
+                       placeholder="Enter Resetting Force" min="0.01" step="0.005">
               </div>
 
               <!-- Adaptation History Input -->
@@ -401,7 +405,7 @@
                         appTooltip="Determines the number of past steps considered in the simulation’s adaptive calculations">?</span>
                 </label>
                 <input type="number" id="adaptation_history" class="form-control" formControlName="adaptation_history"
-                       placeholder="Enter Adaptation History">
+                       placeholder="Enter Adaptation History" min="1">
               </div>
             </div>
           </form>
