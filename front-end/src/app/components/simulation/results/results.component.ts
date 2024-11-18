@@ -5,6 +5,8 @@ import {TitleCasePipe, KeyValuePipe, NgForOf, NgIf, JsonPipe} from '@angular/com
 import {SimulationResult} from '../../../models/simulation-result.model';
 import {interval, Subscription} from 'rxjs';
 import {MatProgressBar} from '@angular/material/progress-bar';
+import JSZip from 'jszip';
+import {saveAs} from 'file-saver';
 
 
 @Component({
@@ -103,4 +105,26 @@ export class ResultsComponent implements OnInit {
     this.router.navigate(['/simulation']).then(() => {
     }); // Adjust the route as needed
   }
+
+  async saveResults() {
+    const zip = new JSZip();
+
+    // Add summary data as a JSON file
+    const summaryBlob = new Blob([JSON.stringify(this.summaryData, null, 2)], {type: 'application/json'});
+    zip.file('summaryData.json', summaryBlob);
+
+    // Add images
+    for (const [key, base64Image] of Object.entries(this.resultImages)) {
+      // Remove the prefix from the base64 string
+      const base64Data = base64Image.replace(/^data:image\/\w+;base64,/, "");
+      const imageBlob = new Blob([new Uint8Array([...atob(base64Data)].map(c => c.charCodeAt(0)))], {type: 'image/png'});
+      zip.file(`${key}.png`, imageBlob);
+    }
+
+    // Generate the zip file and trigger download
+    zip.generateAsync({type: 'blob'}).then((blob: Blob) => {
+      saveAs(blob, 'simulation_results.zip');
+    });
+  }
+
 }

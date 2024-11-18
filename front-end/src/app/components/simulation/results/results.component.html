@@ -60,8 +60,10 @@
     <img class="modal-image" [src]="currentImageSrc" (click)="$event.stopPropagation()"/>
   </div>
 
+
   <!-- Back to Configuration Button -->
   <div class="results-buttons">
+    <button (click)="saveResults()">Save Results</button>
     <button (click)="goBack()">Back to Configuration</button>
   </div>
 </div>
