@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SimulationService} from "../../../services/simulation.service";
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {NgForOf, NgIf} from "@angular/common";
+import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {RouterLink} from '@angular/router';
 import {TooltipDirective} from './tooltip.directive';
 import {AuthService} from '../../../services/auth.service';
@@ -19,7 +19,8 @@ import {AuthService} from '../../../services/auth.service';
     ReactiveFormsModule,
     NgIf,
     RouterLink,
-    TooltipDirective
+    TooltipDirective,
+    NgClass
   ],
   templateUrl: './configuration.component.html',
   styleUrl: './configuration.component.scss'
@@ -69,7 +70,6 @@ export class ConfigurationComponent implements OnInit {
   constructor(
     private simulationService: SimulationService,
     private fb: FormBuilder,
-
     private authService: AuthService
   ) {
 
@@ -106,7 +106,9 @@ export class ConfigurationComponent implements OnInit {
 
     this.switchesForm = this.fb.group({
       forward_sig: [null],
+      forward_strength: [null],
       reverse_sig: [null],
+      reverse_strength: [null],
       ff_inter: [null],
       ft_inter: [null],
       sigmoid_steepness: [null],
@@ -288,7 +290,9 @@ export class ConfigurationComponent implements OnInit {
 
     this.switchesForm.patchValue({
       forward_sig: this.currentConfig?.forward_sig,
+      forward_strength: this.currentConfig?.forward_strength,
       reverse_sig: this.currentConfig?.reverse_sig,
+      reverse_strength: this.currentConfig?.reverse_strength,
       ff_inter: this.currentConfig?.ff_inter,
       ft_inter: this.currentConfig?.ft_inter,
       sigmoid_steepness: this.currentConfig?.sigmoid_steepness,

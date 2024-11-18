@@ -223,7 +223,7 @@
             <div class="form-group form-check force-checkbox">
               <input type="checkbox" id="force" class="form-check-input" formControlName="force">
               <label class="form-check-label" for="force">
-                <span>Accept All Steps</span>
+                <span>Random Walk</span>
                 <span class="tooltip-icon"
                       appTooltip="Compels growth cones to accept all step proposals without guidance potential calculation">?</span>
               </label>
@@ -242,6 +242,7 @@
 
           <form [formGroup]="switchesForm">
 
+
             <div class="interaction-switches">
 
               <!-- Forward Signal Checkbox -->
@@ -250,12 +251,52 @@
                 <label class="form-check-label" for="forward_sig">Forward Signal</label>
               </div>
 
+              <div [hidden]="!switchesForm.get('forward_sig')?.value" class="forward-settings">
+                <div class="forward-settings">
+                  <div class="form-group">
+                    <label for="forward_strength">
+                      <span>Forward Signal Coefficient</span>
+                      <span class="tooltip-icon"
+                            appTooltip="Sets the strength of reverse signal in the potential calculation">?</span>
+                    </label>
+
+                    <input type="number" id="forward_strength" class="form-control" formControlName="forward_strength"
+                           placeholder="Enter Forward Signal Coefficient">
+                  </div>
+                </div>
+              </div>
+
+
               <!-- Reverse Signal Checkbox -->
-              <div class="form-group form-check">
+              <div class="form-group form-check"
+                   [ngClass]="{'form-check-interaction': switchesForm.get('forward_sig')?.value}">
+                <!-- It places a margin-top so forward_sig is placed here and not above. -->
+
                 <input type="checkbox" id="reverse_sig" class="form-check-input" formControlName="reverse_sig">
                 <label class="form-check-label" for="reverse_sig">Reverse Signal</label>
               </div>
 
+
+              <div [hidden]="!switchesForm.get('reverse_sig')?.value" class="reverse-settings">
+                <div class="reverse-settings">
+                  <div class="form-group">
+                    <label for="reverse_strength">
+                      <span>Reverse Signal Coefficient</span>
+                      <span class="tooltip-icon"
+                            appTooltip="Sets the strength of reverse signal in the potential calculation">?</span>
+                    </label>
+
+                    <input type="number" id="reverse_strength" class="form-control" formControlName="reverse_strength"
+                           placeholder="Enter Reverse Signal Coefficient">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group form-check"
+                   [ngClass]="{'form-check-interaction': switchesForm.get('reverse_sig')?.value}">
+                <input type="checkbox" id="cis_inter" class="form-check-input" formControlName="cis_inter">
+                <label class="form-check-label" for="cis_inter">Cis Interaction</label>
+              </div>
 
               <!-- FT Interaction Checkbox -->
               <div class="form-group form-check">
@@ -264,7 +305,8 @@
               </div>
 
               <!-- FF Interaction Checkbox -->
-              <div class="form-group form-check">
+              <div class="form-group form-check"
+                   [ngClass]="{'form-check-interaction': switchesForm.get('ff_inter')?.value}">
                 <input type="checkbox" id="ff_inter" class="form-check-input" formControlName="ff_inter">
                 <label class="form-check-label" for="ff_inter">Fiber-Fiber Interaction</label>
               </div>
@@ -281,7 +323,8 @@
                       <span class="tooltip-icon"
                             appTooltip="Controls how quickly fiber-fiber interaction effects intensify at the start">?</span>
                     </label>
-                    <input type="number" id="sigmoid_steepness" class="form-control" formControlName="sigmoid_steepness"
+                    <input type="number" id="sigmoid_steepness" class="form-control"
+                           formControlName="sigmoid_steepness"
                            placeholder="Enter FF-Interaction Ramp-Up">
                   </div>
 

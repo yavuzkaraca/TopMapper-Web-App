@@ -130,9 +130,6 @@ button:hover, #substrate-btn:hover {
   border-radius: 16px;
 }
 
-.ff-settings {
-  margin-top: 20px;
-}
 
 .step-settings, .adaptation-settings, .interaction-settings {
   background-color: rgba(255, 255, 255, 0.1); /* Light background with some transparency */
@@ -325,6 +322,9 @@ button:hover, #substrate-btn:hover {
   visibility: visible;
 }
 
+.form-check-interaction {
+  margin-top: 20px;
+}
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
