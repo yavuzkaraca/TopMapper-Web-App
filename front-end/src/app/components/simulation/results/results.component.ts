@@ -44,6 +44,7 @@ export class ResultsComponent implements OnInit {
   ];
 
   isModalOpen = false;
+  showAdvancedImages = false;
   currentImageSrc = '';
 
   openImageModal(src: string): void {
@@ -125,6 +126,10 @@ export class ResultsComponent implements OnInit {
     zip.generateAsync({type: 'blob'}).then((blob: Blob) => {
       saveAs(blob, 'simulation_results.zip');
     });
+  }
+
+  onAdvancedImagesClick() {
+    this.showAdvancedImages = !this.showAdvancedImages;
   }
 
 }

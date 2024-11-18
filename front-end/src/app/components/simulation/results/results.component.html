@@ -43,8 +43,23 @@
   <!-- Result Images Section -->
   <div class="images-section" *ngIf="resultImages">
     <h3>Result Visualizations</h3>
+    <div class="results-buttons" id="advanced-images-btn">
+      <button (click)="onAdvancedImagesClick()">
+        {{ showAdvancedImages ? 'Hide Advanced Images' : 'Show Advanced Images' }}
+      </button>
+    </div>
     <div class="images-container">
-      <div *ngFor="let imageMeta of resultImageMetadata" class="image-item">
+      <div
+        *ngFor="let imageMeta of resultImageMetadata"
+        class="image-item"
+        [hidden]="
+        !showAdvancedImages &&
+        imageMeta.key !== 'growth_cones_pre' &&
+        imageMeta.key !== 'substrate' &&
+        imageMeta.key !== 'projection_linear' &&
+        imageMeta.key !== 'trajectories'
+      "
+      >
         <h4>{{ imageMeta.name }}</h4>
         <img
           [src]="'data:image/png;base64,' + resultImages[imageMeta.key]"
@@ -55,6 +70,7 @@
     </div>
   </div>
 
+
   <!-- Modal Overlay for Enlarged Image -->
   <div class="modal-overlay" *ngIf="isModalOpen" (click)="closeImageModal()">
     <img class="modal-image" [src]="currentImageSrc" (click)="$event.stopPropagation()"/>
@@ -63,7 +79,7 @@
 
   <!-- Back to Configuration Button -->
   <div class="results-buttons">
-    <button (click)="saveResults()">Save Results</button>
     <button (click)="goBack()">Back to Configuration</button>
+    <button (click)="saveResults()">Save Results</button>
   </div>
 </div>
