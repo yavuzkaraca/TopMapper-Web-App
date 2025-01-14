@@ -47,7 +47,6 @@ export class ConfigurationComponent implements OnInit {
 
   /** Form groups for different configuration sections */
   basicSettingsForm: FormGroup;
-
   substrateForm: FormGroup = new FormGroup<any>({});
   stepDecisionForm: FormGroup = new FormGroup<any>({});
   gcForm: FormGroup = new FormGroup<any>({});
@@ -141,7 +140,6 @@ export class ConfigurationComponent implements OnInit {
   startSimulation() {
 
     const mergedValues = this.getMergedFormValues();
-
 
     // Update currentConfig with merged values
     Object.keys(mergedValues).forEach(key => {
