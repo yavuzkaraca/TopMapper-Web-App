@@ -7,7 +7,7 @@
       <div class="type-substrate-container">
         <!-- Config Type Selection -->
         <div class="simulation-type">
-          <label for="configType">Select Config Type</label>
+          <label for="configType">Select Assay Type</label>
           <select class="form-control mb-3" id="configType" [(ngModel)]="selectedConfigType" name="configType"
                   (ngModelChange)="onConfigTypeChange()">
             <option *ngFor="let type of configTypes" [value]="type.id">{{ type.name }}</option>
@@ -76,80 +76,78 @@
             <label for="continuous_receptor_start">Continuous Receptor Start</label>
             <input type="number" class="form-control" id="continuous_receptor_start"
                    formControlName="continuous_receptor_start"
-                   placeholder="Enter Number of Columns" min="0.01" step="0.05">
+                   placeholder="Enter Min Receptor Value" min="0.01" step="0.05">
           </div>
           <div class="form-group" *ngIf="selectedConfigType === 'CONTINUOUS_GRADIENTS'">
             <label for="continuous_ligand_start">Continuous Ligand Start</label>
             <input type="number" class="form-control" id="continuous_ligand_start"
                    formControlName="continuous_ligand_start"
-                   placeholder="Enter Number of Columns" min="0.01" step="0.05">
+                   placeholder="Enter Min Ligand Value" min="0.01" step="0.05">
           </div>
           <div class="form-group" *ngIf="selectedConfigType === 'CONTINUOUS_GRADIENTS'">
             <label for="continuous_receptor_end">Continuous Receptor End</label>
             <input type="number" class="form-control" id="continuous_receptor_end"
                    formControlName="continuous_receptor_end"
-                   placeholder="Enter Number of Columns" min="0.01" step="0.05">
+                   placeholder="Enter Max Receptor Value" min="0.01" step="0.05">
           </div>
           <div class="form-group" *ngIf="selectedConfigType === 'CONTINUOUS_GRADIENTS'">
             <label for="continuous_ligand_end">Continuous Ligand End</label>
             <input type="number" class="form-control" id="continuous_ligand_end"
                    formControlName="continuous_ligand_end"
-                   placeholder="Enter Number of Columns" min="0.01" step="0.05">
+                   placeholder="Enter Max Ligand Value" min="0.01" step="0.05">
           </div>
           <div class="form-group" *ngIf="selectedConfigType === 'CONTINUOUS_GRADIENTS'">
             <label for="continuous_receptor_steepness">Continuous Receptor Steepness</label>
             <input type="number" class="form-control" id="continuous_receptor_steepness"
                    formControlName="continuous_receptor_steepness"
-                   placeholder="Enter Number of Columns" min="0.01" step="0.05">
+                   placeholder="Enter Steepness of Receptor Gradient" min="0.01" step="0.05">
           </div>
           <div class="form-group" *ngIf="selectedConfigType === 'CONTINUOUS_GRADIENTS'">
             <label for="continuous_ligand_steepness">Continuous Ligand Steepness</label>
             <input type="number" class="form-control" id="continuous_ligand_steepness"
                    formControlName="continuous_ligand_steepness"
-                   placeholder="Enter Number of Columns" min="0.01" step="0.05">
+                   placeholder="Enter Steepness of Ligand Gradient" min="0.01" step="0.05">
           </div>
           <div class="form-group" *ngIf="selectedConfigType === 'WEDGES'">
             <label for="wedge_narrow_edge">Wedge Narrow Edge</label>
             <input type="number" class="form-control" id="wedge_narrow_edge" formControlName="wedge_narrow_edge"
-                   placeholder="Enter Number of Columns" min="1">
+                   placeholder="Enter Narrow Edge Length of the Wedge" min="1">
           </div>
           <div class="form-group" *ngIf="selectedConfigType === 'WEDGES'">
             <label for="wedge_wide_edge">Wedge Wide Edge</label>
             <input type="number" class="form-control" id="wedge_wide_edge" formControlName="wedge_wide_edge"
-                   placeholder="Enter Number of Columns" min="1">
+                   placeholder="Enter Wide Edge Length of the Wedge" min="1">
           </div>
           <div class="form-group" *ngIf="selectedConfigType === 'STRIPE'">
             <label for="stripe_fwd">Stripe Fwd</label>
-            <input type="checkbox" class="form-control" id="stripe_fwd" formControlName="stripe_fwd"
-                   placeholder="Enter Number of Columns">
+            <input type="checkbox" class="form-control" id="stripe_fwd" formControlName="stripe_fwd">
           </div>
           <div class="form-group" *ngIf="selectedConfigType === 'STRIPE'">
             <label for="stripe_rew">Stripe Rew</label>
-            <input type="checkbox" class="form-control" id="stripe_rew" formControlName="stripe_rew"
-                   placeholder="Enter Number of Columns">
+            <input type="checkbox" class="form-control" id="stripe_rew" formControlName="stripe_rew">
           </div>
           <div class="form-group" *ngIf="selectedConfigType === 'STRIPE'">
             <label for="stripe_conc">Stripe Conc</label>
             <input type="number" class="form-control" id="stripe_conc" formControlName="stripe_conc"
-                   placeholder="Enter Number of Columns" min="0.01" max="1" step="0.05">
+                   placeholder="This feature is not implemented yet!" min="0.01" max="1" step="0.05">
           </div>
           <div class="form-group" *ngIf="selectedConfigType === 'STRIPE'">
             <label for="stripe_width">Stripe Width</label>
             <input type="number" class="form-control" id="stripe_width" formControlName="stripe_width"
-                   placeholder="Enter Number of Columns" min="1">
+                   placeholder="Enter the Width of Stripes" min="1">
           </div>
           <div class="form-group" *ngIf="selectedConfigType === 'GAP'">
             <label for="gap_begin">Gap Begin</label>
             <input type="number" class="form-control" id="gap_begin" formControlName="gap_begin"
-                   placeholder="Enter Number of Columns" min="0.01" max="0.99" step="0.05">
+                   placeholder="Enter the Gap Begin" min="0.01" max="0.99" step="0.05">
           </div>
           <div class="form-group" *ngIf="selectedConfigType === 'GAP'">
-            <label for="gap_end">Gap End</label>
+            <label for="gap_end">Gap Width</label>
             <input type="number" class="form-control" id="gap_end" formControlName="gap_end"
-                   placeholder="Enter Number of Columns" min="0.01" max="0.99" step="0.05">
+                   placeholder="Enter the Width of Gap" min="0.01" max="0.99" step="0.05">
           </div>
           <div class="form-group" *ngIf="selectedConfigType === 'GAP'">
-            <label for="gap_first_block">Gap First Block</label>
+            <label for="gap_first_block">First Block</label>
             <select class="form-control" id="gap_first_block" formControlName="gap_first_block">
               <option value="ligand">Ligand</option>
               <option value="receptor">Receptor</option>
@@ -157,7 +155,7 @@
           </div>
 
           <div class="form-group" *ngIf="selectedConfigType === 'GAP'">
-            <label for="gap_second_block">Gap Second Block</label>
+            <label for="gap_second_block">Second Block</label>
             <select class="form-control" id="gap_second_block" formControlName="gap_second_block">
               <option value="ligand">Ligand</option>
               <option value="receptor">Receptor</option>
@@ -238,12 +236,12 @@
             <!-- Standard Deviation -->
             <div class="form-group" [hidden]="stepDecisionForm.get('force')?.value">
               <label for="sigma">
-                <span>Standard Deviation</span>
+                <span>Tolerance</span>
                 <span class="tooltip-icon"
                       appTooltip="Controls the determinism of step decisions, with lower values leading to steeper gaussian curve">?</span>
               </label>
               <input type="number" id="sigma" class="form-control" formControlName="sigma"
-                     placeholder="Enter Standard Deviation" min="0" max="1" step="0.05">
+                     placeholder="Enter Tolerance" min="0" max="1" step="0.05">
             </div>
 
             <!-- Accept All Steps Checkbox -->
@@ -288,7 +286,7 @@
                     </label>
 
                     <input type="number" id="forward_strength" class="form-control" formControlName="forward_strength"
-                           placeholder="Enter Forward Signal Coefficient" min="0.01" step="0.05">
+                           placeholder="This feature is not implemented yet!" min="0.01" step="0.05">
                   </div>
                 </div>
               </div>
@@ -314,7 +312,7 @@
                     </label>
 
                     <input type="number" id="reverse_strength" class="form-control" formControlName="reverse_strength"
-                           placeholder="Enter Reverse Signal Coefficient" min="0.01" step="0.05">
+                           placeholder="This feature is not implemented yet!" min="0.01" step="0.05">
                   </div>
                 </div>
               </div>
@@ -370,7 +368,7 @@
                   <!-- Sigmoid Height Input -->
                   <div class="form-group">
                     <label for="sigmoid_height">
-                      <span>FF-Interaction Maximum</span>
+                      <span>FF-Interaction Plateau</span>
                       <span class="tooltip-icon"
                             appTooltip="Defines the peak influence of fiber-fiber interactions">?</span>
 
@@ -400,24 +398,24 @@
               <!-- Adaptation Mu Input -->
               <div class="form-group">
                 <label for="adaptation_mu">
-                  <span>Adaptation Coefficient</span>
+                  <span>Adaptation Strength</span>
                   <span class="tooltip-icon"
                         appTooltip="Adjusts how quickly growth cones adapt to higher potential environments">?</span>
 
                 </label>
                 <input type="number" id="adaptation_mu" class="form-control" formControlName="adaptation_mu"
-                       placeholder="Enter Adaptation Coefficient" min="0.01" step="0.005">
+                       placeholder="Enter Adaptation Strength" min="0.01" step="0.005">
               </div>
 
               <!-- Adaptation Lambda Input -->
               <div class="form-group">
                 <label for="adaptation_lambda">
-                  <span>Resetting Force</span>
+                  <span>Resetting Force Vigor</span>
                   <span class="tooltip-icon"
                         appTooltip="Adjusts how quickly growth cones come back to their original molecular signature">?</span>
                 </label>
                 <input type="number" id="adaptation_lambda" class="form-control" formControlName="adaptation_lambda"
-                       placeholder="Enter Resetting Force" min="0.01" step="0.005">
+                       placeholder="Enter Resetting Force Vigor " min="0.01" step="0.005">
               </div>
 
               <!-- Adaptation History Input -->
