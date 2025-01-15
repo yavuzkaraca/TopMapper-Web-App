@@ -73,14 +73,39 @@
 
           <!-- Dynamic fields based on the selected type -->
           <div class="form-group" *ngIf="selectedConfigType === 'CONTINUOUS_GRADIENTS'">
-            <label for="continuous_signal_start">Continuous Signal Start</label>
-            <input type="number" class="form-control" id="continuous_signal_start"
-                   formControlName="continuous_signal_start"
+            <label for="continuous_receptor_start">Continuous Receptor Start</label>
+            <input type="number" class="form-control" id="continuous_receptor_start"
+                   formControlName="continuous_receptor_start"
                    placeholder="Enter Number of Columns" min="0.01" step="0.05">
           </div>
           <div class="form-group" *ngIf="selectedConfigType === 'CONTINUOUS_GRADIENTS'">
-            <label for="continuous_signal_end">Continuous Signal End</label>
-            <input type="number" class="form-control" id="continuous_signal_end" formControlName="continuous_signal_end"
+            <label for="continuous_ligand_start">Continuous Ligand Start</label>
+            <input type="number" class="form-control" id="continuous_ligand_start"
+                   formControlName="continuous_ligand_start"
+                   placeholder="Enter Number of Columns" min="0.01" step="0.05">
+          </div>
+          <div class="form-group" *ngIf="selectedConfigType === 'CONTINUOUS_GRADIENTS'">
+            <label for="continuous_receptor_end">Continuous Receptor End</label>
+            <input type="number" class="form-control" id="continuous_receptor_end"
+                   formControlName="continuous_receptor_end"
+                   placeholder="Enter Number of Columns" min="0.01" step="0.05">
+          </div>
+          <div class="form-group" *ngIf="selectedConfigType === 'CONTINUOUS_GRADIENTS'">
+            <label for="continuous_ligand_end">Continuous Ligand End</label>
+            <input type="number" class="form-control" id="continuous_ligand_end"
+                   formControlName="continuous_ligand_end"
+                   placeholder="Enter Number of Columns" min="0.01" step="0.05">
+          </div>
+          <div class="form-group" *ngIf="selectedConfigType === 'CONTINUOUS_GRADIENTS'">
+            <label for="continuous_receptor_steepness">Continuous Receptor Steepness</label>
+            <input type="number" class="form-control" id="continuous_receptor_steepness"
+                   formControlName="continuous_receptor_steepness"
+                   placeholder="Enter Number of Columns" min="0.01" step="0.05">
+          </div>
+          <div class="form-group" *ngIf="selectedConfigType === 'CONTINUOUS_GRADIENTS'">
+            <label for="continuous_ligand_steepness">Continuous Ligand Steepness</label>
+            <input type="number" class="form-control" id="continuous_ligand_steepness"
+                   formControlName="continuous_ligand_steepness"
                    placeholder="Enter Number of Columns" min="0.01" step="0.05">
           </div>
           <div class="form-group" *ngIf="selectedConfigType === 'WEDGES'">
@@ -176,8 +201,6 @@
           </div>
         </form>
       </div>
-
-
     </div>
 
     <div class="advanced-btn">

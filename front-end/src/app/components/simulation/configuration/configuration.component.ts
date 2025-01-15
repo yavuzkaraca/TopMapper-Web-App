@@ -100,7 +100,6 @@ export class ConfigurationComponent implements OnInit {
       receptor_min: [null],
       receptor_max: [null],
       receptor_steepness: [null],
-
     })
 
     this.switchesForm = this.fb.group({
@@ -110,6 +109,7 @@ export class ConfigurationComponent implements OnInit {
       reverse_strength: [null],
       ff_inter: [null],
       ft_inter: [null],
+      cis_inter: [null],
       sigmoid_steepness: [null],
       sigmoid_shift: [null],
       sigmoid_height: [null]
@@ -168,8 +168,13 @@ export class ConfigurationComponent implements OnInit {
   configureSubstrateForm() {
     switch (this.selectedConfigType) {
       case 'CONTINUOUS_GRADIENTS':
-        this.substrateForm.addControl('continuous_signal_start', this.fb.control(null));
-        this.substrateForm.addControl('continuous_signal_end', this.fb.control(null));
+        this.substrateForm.addControl('continuous_receptor_start', this.fb.control(null));
+        this.substrateForm.addControl('continuous_ligand_start', this.fb.control(null));
+        this.substrateForm.addControl('continuous_receptor_end', this.fb.control(null));
+        this.substrateForm.addControl('continuous_ligand_end', this.fb.control(null));
+        this.substrateForm.addControl('continuous_receptor_steepness', this.fb.control(null));
+        this.substrateForm.addControl('continuous_ligand_steepness', this.fb.control(null));
+
         break;
       case 'WEDGES':
         this.substrateForm.addControl('wedge_narrow_edge', this.fb.control(null));
@@ -196,8 +201,12 @@ export class ConfigurationComponent implements OnInit {
         this.substrateForm.patchValue({
           rows: this.currentConfig.rows,
           cols: this.currentConfig.cols,
-          continuous_signal_start: this.currentConfig.continuous_signal_start,
-          continuous_signal_end: this.currentConfig.continuous_signal_end,
+          continuous_receptor_start: this.currentConfig.continuous_receptor_start,
+          continuous_ligand_start: this.currentConfig.continuous_ligand_start,
+          continuous_receptor_end: this.currentConfig.continuous_receptor_end,
+          continuous_ligand_end: this.currentConfig.continuous_ligand_end,
+          continuous_receptor_steepness: this.currentConfig.continuous_receptor_steepness,
+          continuous_ligand_steepness: this.currentConfig.continuous_ligand_steepness,
         });
         break;
       case 'WEDGES':
@@ -252,7 +261,8 @@ export class ConfigurationComponent implements OnInit {
       ...this.stepDecisionForm.value,
       ...this.switchesForm.value,
       ...this.adaptationForm.value,
-      ...this.substrateForm.value
+      ...this.substrateForm.value,
+      ...this.gcForm.value
     };
   }
 
@@ -286,6 +296,15 @@ export class ConfigurationComponent implements OnInit {
     });
     this.stepDecisionForm.updateValueAndValidity();
 
+    this.gcForm.patchValue({
+      ligand_min: this.currentConfig?.ligand_min,
+      ligand_max: this.currentConfig?.ligand_max,
+      ligand_steepness: this.currentConfig?.ligand_steepness,
+      receptor_min: this.currentConfig?.receptor_min,
+      receptor_max: this.currentConfig?.receptor_max,
+      receptor_steepness: this.currentConfig?.receptor_steepness,
+    })
+
     this.switchesForm.patchValue({
       forward_sig: this.currentConfig?.forward_sig,
       forward_strength: this.currentConfig?.forward_strength,
@@ -293,6 +312,7 @@ export class ConfigurationComponent implements OnInit {
       reverse_strength: this.currentConfig?.reverse_strength,
       ff_inter: this.currentConfig?.ff_inter,
       ft_inter: this.currentConfig?.ft_inter,
+      cis_inter: this.currentConfig?.cis_inter,
       sigmoid_steepness: this.currentConfig?.sigmoid_steepness,
       sigmoid_shift: this.currentConfig?.sigmoid_shift,
       sigmoid_height: this.currentConfig?.sigmoid_height,
