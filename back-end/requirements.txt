@@ -2,3 +2,5 @@ Flask
 Flask-CORS
 SQLAlchemy
 pymysql
+flask_sqlalchemy
+cyptograpghy
