@@ -1,4 +1,4 @@
 export const environment = {
   // production: false,
-  apiUrl: 'http://127.0.0.1:5000/'  // Use your local network IP for development
+  apiUrl: 'http://172.22.67.140:5000/'  // Use your local network IP for development
 };
