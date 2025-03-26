@@ -1,6 +1,6 @@
-Flask
+flask
 Flask-CORS
 SQLAlchemy
 pymysql
 flask_sqlalchemy
-cyptograpghy
+cryptography

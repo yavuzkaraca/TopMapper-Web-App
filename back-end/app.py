@@ -1,3 +1,14 @@
+
+import sys
+import os
+
+src_path = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), 'Topographic-Projection-Sim', 'src')
+)
+if src_path not in sys.path:
+    sys.path.insert(0, src_path)
+
+
 import time
 from datetime import datetime
 
@@ -9,6 +20,7 @@ from tables import db, User, Results, UserResults
 
 from build import config as cfg
 from model.simulation import get_updated_progress
+
 
 import visualization as vz
 
